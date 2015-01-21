@@ -28,7 +28,7 @@ tags:
 
 这篇文章讲的主要是关于如果在客户端和服务端使用Handlebars，以及在使用时如何避免一些陷阱。
 
-**服务端使用Handlebar
+##服务端使用Handlebar
 
 NodeJS中我选择Handlebars作为我的视图引擎。我喜欢这种看上去只是多了一些{{}}和helper的HTML，而不是像EJS和Jade那样跟HTML有很大区别的视图引擎。如果你之前还没有使用过Handlebars，下面列举了一个简单的模板代码：
 
@@ -45,10 +45,10 @@ NodeJS中我选择Handlebars作为我的视图引擎。我喜欢这种看上去�
 
 如果你想在基于Express的应用中使用Handlebars，可以参考我的node-boilerplate。
 
-**客户端使用Handlebars
+##客户端使用Handlebars
 如果你正在使用任何Javascript MV*框架（Backbone,EmberJs,YAF等），你也许需要在客户端使用一个模板库。Handlebar在所有这些框架中都能很好的用起来。在客户端使用Handlebars最酷的事情之一就是你可以在客户端和服务端共享模板。你可以通过把模板分片存储，然后在服务端以及在客户端通过`<script>`标签来分别使用。
 
-**服务端使用Handlebars时的客户端模板设置
+##服务端使用Handlebars时的客户端模板设置
 如果你在客户端和服务端使用Handlebars，你会遇到这样的问题，客户端的模板会被服务端的视图引擎解析。例如：
 
     <h1>My Page Title</h1>
