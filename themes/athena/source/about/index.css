@@ -1,0 +1,63 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font: 14px/22px Arial,"Hiragino Sans GB","微软雅黑","宋体";
+}
+
+.about-container{
+    width: 700px;
+    border: 1px solid red;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #fafafa;
+    border: 1px solid #f2f2f2;
+}
+
+.img{
+    width: 100px;
+    height: 116px;
+    background: url('http://dn-xuqi.qbox.me/me_small.jpg') no-repeat;
+    border-radius: 50px;
+    margin: 0 auto;
+}
+
+.name{
+    font-size: 30px;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+}
+
+.basic-info{
+    text-align: center;
+    list-style: none;
+}
+
+.get-more{
+    text-align: center;
+}
+
+.get-more a{
+    background: url('http://dn-xuqi.qbox.me/sns_bg.png') no-repeat;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    display: inline-block;
+    margin: 5px 5px 0 5px;
+    cursor: pointer;
+}
+
+.get-more a.linkedIn{
+    background-position: -160px -5px;
+}
+
+.get-more a.weibo{
+    background-position: -469px -5px;
+}
+
+.get-more a.github{
+    background-position: -263px -5px;
+}
