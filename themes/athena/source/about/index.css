@@ -9,13 +9,16 @@ body{
 
 .about-container{
     width: 700px;
-    border: 1px solid red;
     margin-right: auto;
     margin-left: auto;
     background-color: #fafafa;
     border: 1px solid #f2f2f2;
 }
 
+.about-container > div{
+    padding: 8px;
+}
+/*基本信息*/
 .img{
     width: 100px;
     height: 116px;
@@ -60,4 +63,40 @@ body{
 
 .get-more a.github{
     background-position: -263px -5px;
+}
+/*基本信息End*/
+
+/*分隔*/
+.seperator .sep{
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.seperator .sep-l, .seperator .sep-r{
+    width: 280px;
+    height: 0;
+    border-top: 1px solid #EDEDED;
+}
+
+.seperator .sep-c{
+    font-size: 18px;
+    padding: 6px 24px;
+    text-align: center;
+    background-color: #EEE;
+    -moz-border-radius: 26px;
+    -webkit-border-radius: 26px;
+    border-radius: 26px;
+    margin: 0 13px;
+}
+/*分隔End*/
+
+.skills-block span{
+    padding: 10px;
+    margin: 5px 0;
+    text-align: center;
+    background-color: #F0F0F0;
+    -moz-border-radius: 26px;
+    -webkit-border-radius: 26px;
+    border-radius: 26px;
+    display: inline-block;
 }
