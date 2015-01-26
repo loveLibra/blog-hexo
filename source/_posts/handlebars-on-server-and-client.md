@@ -19,7 +19,7 @@ tags:
         ...
     </script>
 
-    var tpl = Handlerbar.compile($('#login-signup-tpl').html());
+    var tpl = Handlebars.compile($('#login-signup-tpl').html());
     $('body').append(tpl({isLogin: true}));
 功能就是使用Handlebars编译模板并传入json然后得到对应的HTML片段。不过试一下就知道，这样时得不到你想要的东西的。下面带着问题看文章吧...
 
@@ -28,7 +28,7 @@ tags:
 
 这篇文章讲的主要是关于如果在客户端和服务端使用Handlebars，以及如何避免一些使用中的陷阱。
 
-##服务端使用Handlebar
+##服务端使用Handlebars
 
 NodeJS中我选择[Handlebars](http://handlebarsjs.com/)作为我的视图引擎。我喜欢这种看上去只是多了一些{{}}和helper的HTML，而不是像EJS和Jade那样跟HTML有很大区别的视图引擎。如果你之前还没有使用过Handlebars，下面的代码段就是一段简单的模板示例：
 
