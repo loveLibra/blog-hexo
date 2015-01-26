@@ -19,12 +19,21 @@ body{
     padding: 8px;
 }
 /*基本信息*/
+.info-block{
+    text-align: center;
+}
+
+.img-to-home{
+    display: inline-block;
+    text-align: center;
+}
+
 .img{
     width: 100px;
     height: 116px;
     background: url('http://dn-xuqi.qbox.me/me_small.jpg') no-repeat;
     border-radius: 50px;
-    margin: 0 auto;
+    cursor: pointer;
 }
 
 .name{
@@ -67,18 +76,22 @@ body{
 /*基本信息End*/
 
 /*分隔*/
+.seperator{
+    text-align: center;
+}
+
 .seperator .sep{
     vertical-align: middle;
     display: inline-block;
 }
 
-.seperator .sep-l, .seperator .sep-r{
-    width: 280px;
+.seperator .sep-l{
+    width: 100%;
     height: 0;
     border-top: 1px solid #EDEDED;
 }
 
-.seperator .sep-c{
+.seperator .sep-t{
     font-size: 18px;
     padding: 6px 24px;
     text-align: center;
@@ -86,17 +99,20 @@ body{
     -moz-border-radius: 26px;
     -webkit-border-radius: 26px;
     border-radius: 26px;
-    margin: 0 13px;
+    margin-top: -40px;
 }
 /*分隔End*/
 
+/*技能*/
+.skills-block{
+    text-align: center;
+}
+
 .skills-block span{
-    padding: 10px;
+    padding: 5px 10px;
     margin: 5px 0;
     text-align: center;
     background-color: #F0F0F0;
-    -moz-border-radius: 26px;
-    -webkit-border-radius: 26px;
-    border-radius: 26px;
     display: inline-block;
 }
+/*技能End*/
