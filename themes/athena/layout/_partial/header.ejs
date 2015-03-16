@@ -15,9 +15,11 @@
         <% for (var i in theme.menu){ %>
           <a id="<%= theme.menu_icon[i] %>" class="nav-icon" href="<%- url_for(theme.menu[i]) %>"></a>
         <% } %>
+        <!--
         <% if (theme.rss){ %>
           <a id="nav-rss-link" class="nav-icon" href="<%- theme.rss %>" title="RSS Feed"></a>
         <% } %>
+        -->
       </nav>
     </div>
   </div>
