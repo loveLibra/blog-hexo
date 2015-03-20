@@ -15,13 +15,13 @@ Pjax的好处：
 在不支持PushState或者Ajax的浏览器中，Pjax的功能不被支持，但是不影响正常使用，Pjax会使用原始的页面跳转来处理这种情况
 
 Pjax的实现原理：
-pajx通过ajax从服务器端抓取html并把html填充到需要变更内容的容器中，然后通过PushState更新页面URL。(easy to understand,uh？But we are not the first one to eat crab ~~)
+pajx阻止链接的点击默认事件，转为通过ajax从服务器端抓取html并把html填充到需要变更内容的容器中，然后通过PushState更新页面URL。(easy to understand,uh？But we are not the first one to eat crab ~~)
 
 以上属于思想层面的东西，因为jquery.pjax的存在，下面将针对jquery.pjax做出使用说明。
 
 --------
 
-[Jquery.pajax](https://github.com/defunkt/jquery-pjax)
+[Jquery.pjax](https://github.com/defunkt/jquery-pjax)
 
 Start By An Example:
 
@@ -55,23 +55,31 @@ Tip：使用前bower安装一下jquery和jquery.pjax或者cdn引入下。动手�
 
 Usage:
 * $.fn.pjax
-初始化Pjax，可通过下述三种方案实现链接的pjax页面加载：
-**方法一：**
+初始化Pjax，可通过下述方法实现链接的pjax页面加载：
 
-        $(document).pjax(selector, container, options)
-参数列表指定链接的选择器selector、HTML容器container以及其他一些选项以对象方式传入。
-**方法二：**
 
-        $(document).pjax('a[data-pjax]', options)
-此方法可以指定所有包含data-pjax属性的链接元素使用pjax进行页面加载。在链接元素中我们指定data-pjax的属性值为container的选择器可以省略container参数；若不指定则按照方法一方式传入或者options中增加container属性对即可。
-**方法三：**
+        $(document).pjax(selector, [container], options)
+selector可以指定为a[data-pjax]，然后html中a标签中指定data-pjax为container即可省略列表中container参数。
 
-        $(document).pjax({
-            target: 'a',
-            container: '#container',
-            ...
-        });
-所有参数通过一个对象传入，包括target/selector和container。
+还有另外一种方法初始化，但是不推荐：
+
+    $('a[data-pjax]').pjax();
+
+因为源码中初始化的过程是这样的：
+
+    function fnPjax(selector, container, options) {
+        var context = this
+        return this.on('click.pjax', selector, function(event) {
+            var opts = $.extend({}, optionsFor(container, options))
+    
+            if (!opts.container)
+                opts.container = $(this).attr('data-pjax') || context
+            handleClick(event, opts) 
+        })
+    }
+
+在上下文环境（此处为document）中为selector绑定click.pjax事件并执行回调，回调中会首先拼接opts即将container和options两个参数合并成一个对象（`{container: '#container', otherOpt: ...}`）。
+如果参数列表中没有传入container则会去读上下文环境中的data-pjax属性（上述不推荐的例子就是属于这种情况）或者直接将上下文环境当成container。由代码可以看到，如果采用不推荐的那种写法，基本功能虽然可以实现，但是此时如果我在列表中传入了一个options对象，其实这个时候options是无效的（会被当成selector），或者传入一个字符串选择器（本意是container），但是会被绑定一个原来链接元素才会有的事件。上述所有情况都会造成不预期的错误，虽然仍然以跳转页面进行处理，但这不是我们想要的结果。所以，尽量避免...（我看到好多stackoverflow上的都是这么写的，难道是我技术拙劣得不能理解了...如果你很知道的话一定要不吝指教啊）
 
 options：
 
@@ -87,11 +95,11 @@ options：
 | dataType       | 'html'    |                                       |
 | container      |           |                                       |
 | url            | link.href | string/function，URL for ajax request |
-| target         | link      |                                       |
-| fragment       |           | (还没有理解，后面补充)                |
+| target         | link      | 事件relatedTarget属性的值             |
+| fragment       |           | 指定返回数据中某一段代码进行填充      |
 
 另外，pjax允许你通过`$.pjax.defaults.xx`去修改默认值。
-
+Ps: relatedTarget是当前事件涉及到的相关联的其他元素。比如mouseover会涉及到多个元素，从元素1离开然后进入元素2，此时relatedTarget就是元素1...你明白了吗？反正我明白了...涉及到这个属性的事件比较少，列如下：mouseenter，mouseout，mouseover，mouseleave，focus，blur。
 * $.pjax.click
 pajx的底层函数，功能是手动去把链接click事件转移到pjax实现，可以增加一些使用者对事件句柄event的控制。
 
@@ -131,24 +139,27 @@ pjax提供了很多事件来供我们实现Pjax过程中需要处理的细节功
             console.log('Compelete');
         });
 
-另外，pjax:send和pjax:complete是一对基友可以帮我们实现正在加载的图标的显示和隐藏。send时显示，complete时隐藏，语法同上，不赘述。
+另外，pjax:send和pjax:complete是一对基友，可以帮我们实现类似于loading图标正确的显示和隐藏的功能，send时显示，complete时隐藏，语法同上，不赘述。
 
 events list：
-1.pjax链接时事件
+Ps：pjax:click和pjax:clicked是由链接元素触发的，其他事件由容器触发。
+* `pjax:click`
+* `pjax:beforeSend`
+* `pjax:start`
+* `pjax:send`
+* `pjax:clicked`
+* `pjax:beforeReplace`
+* `pjax:success`
+* `pjax:timeout`
+* `pjax:error`
+* `pjax:complete`
+* `pjax:end`
 
-| event              | args                         | notes                   |
-| ------------------ |:----------------------------:|:-----------------------:|
-| pjax:click         | options                      | 链接激活后触发          |
-| pjax:beforeSend    | xhr,options                  | 此时可以设置XHR头部信息 |
-| pjax:start         | xhr,options                  |                         |
-| pjax:end           | xhr,options                  |                         |
-| pjax:clicked       | options                      | 链接点击后pjax开始触发  |
-| pjax:beforeReplace | contents,options             | 替换HRML之前触发        |
-| pjax:success       | data,status,xhr,options      | HTML替换之后触发        |
-| pjax:timeout       | xhr,options                  | 超时timeout时触发       |
-| pjax:error         | xhr,textStatus,error,options | ajax出错时触发          |
-| pjax:complete      | xhr,textStatus,options       | ajax完成后触发          |
-| pjax:end           | xhr, options                 |                         |
+下列事件会在浏览器后退/前进按钮时触发
+* `pjax:popstate`
+* `pjax:start` -- 内容替换前
+* `pjax:beforeReplace` -- 从缓存中读取HTML替换之前
+* `pjax:end` -- 内容替换后
 
-2.浏览器前进后退按钮时事件
-pjax:popstate，pjax:start，pjax:beforeReplace，pjax:end
+---------
+另外，如果你使用spm，jquery.pjax也被简单了封装了一下放在了上面，你可以通过`spm install jquery-pjax --save`获取。
