@@ -141,8 +141,11 @@ Level4：BLOCK-Heplers
 
 #### Ps: 一些有用的Build-In Helper
 * {{#each arg}} 循环内可以通过{{@index}}获取当前的循环的索引；{{@key}}可以获取当前遍历的数组或者对象的键值，数组中等同于{{@index}}；另外，还有{{@first}}，{{@last}}表示遍历中的第一个和最后一个的标识，返回true或false；
+
 * {{#if condition}} or {{else}} or {{else if conditionElse}}
+
 * {{#unless condition}} inverse of the `if` helper
+
 * {{{{raw-helper}}}}
 * {{with ctx}}
 与Js的with一样，改变当前context，可以避免含有深层次嵌套属性时重复书写父级的名字
@@ -156,7 +159,7 @@ Level4：BLOCK-Heplers
             {{!-- 可选择性插入else，仅当story为false值时渲染 --}}
             <div>I am Empty</div>
         {{/with}}
-
+    
         //data
         {
             title: 'Hello world',
@@ -171,7 +174,7 @@ Level4：BLOCK-Heplers
         {{#each names}}
             {{.}} : {{lookup ../foo @key}}
         {{/each}}
-
+    
         //data
         {
             names: {
@@ -185,11 +188,12 @@ Level4：BLOCK-Heplers
                 c: 'Foo3'
             }
         }
-
+    
         //output
         Name1 ：Foo1
         Name2 ：Foo2
         Name3 ：Foo3
+        
 * {{log info}} 打印调试
 
 ### Partials
