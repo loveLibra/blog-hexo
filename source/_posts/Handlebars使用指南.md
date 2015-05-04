@@ -140,13 +140,16 @@ Level4：BLOCK-Heplers
 另外，可以通过this取得当前上下文的属性值手动进行某些操作，比如可以通过this.name获取name的属性值为xuqi。
 
 #### Ps: 一些有用的Build-In Helper
-* {{#each arg}} 循环内可以通过{{@index}}获取当前的循环的索引；{{@key}}可以获取当前遍历的数组或者对象的键值，数组中等同于{{@index}}；另外，还有{{@first}}，{{@last}}表示遍历中的第一个和最后一个的标识，返回true或false；
+* {{#each arg}}
+循环内可以通过{{@index}}获取当前的循环的索引， 通过{{@../index}}可以获得父级遍历的索引；  
+{{@key}}可以获取当前遍历的数组或者对象的键值，数组中等同于{{@index}}；  
+{{@first}}，{{@last}}表示遍历中的第一个和最后一个的标识，返回true或false；  
+each可选择性插入{{else}}， 在遍历的list为**空**(遍历对象为非空数组或者对象时不为空值)时执行。
 
 * {{#if condition}} or {{else}} or {{else if conditionElse}}
 
 * {{#unless condition}} inverse of the `if` helper
 
-* {{{{raw-helper}}}}
 * {{with ctx}}
 与Js的with一样，改变当前context，可以避免含有深层次嵌套属性时重复书写父级的名字
 
@@ -221,6 +224,12 @@ Handlebars.registerPartials('parName', 'parContent'); 注册一个Partials；
 
 ./是用来解决Helper名字和属性名重名的冲突的情况，例如./xx表示的是属性名而不是Helper名。另外this/name和this.name也实现相同的功能。
 
+当然啦， 如果嵌套层级很深， 而我想访问到根作用域的时候是不是要写成`../../..`这样呢？ 是不是sa！ 那该咋办？ Handlebars提供了一个@root变量轻轻松松访问到根作用域：
+
+    {{#each sub}}
+        {{@root.someAttr}}
+    {{/each sub}}
+    
 ### Comments
 {{!-- --}}不会将注释内容输出到HTML中，如果想输出注释到HTML中可以使用{{! }}或者HTML的注释语法`<!-- -->`。另外，如果注释中有`}}`，则必须使用{{!-- --}}。
 
