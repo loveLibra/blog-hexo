@@ -61,7 +61,7 @@ Level1：
     {{link 'http://www.baidu.com' '百度'}}
     
     //helper
-    Handlerbars.registerHelper('link', function(url, name) {
+    Handlebars.registerHelper('link', function(url, name) {
          return '<a href="' + url + '">' + name + '</a>';
     }); 
 
@@ -200,7 +200,7 @@ each可选择性插入{{else}}， 在遍历的list为**空**(遍历对象为非�
 * {{log info}} 打印调试
 
 ### Partials
-Handlebars.registerPartials('parName', 'parContent'); 注册一个Partials；
+Handlebars.registerPartial('parName', 'parContent'); 注册一个Partials；
 
 需要调用Partials时 {{> parName}}即可。
 
@@ -231,7 +231,7 @@ Handlebars.registerPartials('parName', 'parContent'); 注册一个Partials；
     {{/each sub}}
     
 ### Comments
-{{!-- --}}不会将注释内容输出到HTML中，如果想输出注释到HTML中可以使用{{! }}或者HTML的注释语法`<!-- -->`。另外，如果注释中有`}}`，则必须使用{{!-- --}}。
+{{!-- --}}和{{! }}不会将注释内容输出到HTML中，如果想输出注释到HTML中可以使用HTML的注释语法`<!-- -->`。另外，如果注释中有`}}`，则必须使用{{!-- --}}。
 
 ## 后语
 上面讲的只是一些基本用法，冰山一角，官网上面还有很多文章中没有提及但是也许会给你的不一样的快感的功能。Helper的实现方式需要着重理解，几个Build-In Helper在官网上都提供了Helper实现方式，明白思想->模仿实现->定义自己的Helper实现特定的功能，go ~
