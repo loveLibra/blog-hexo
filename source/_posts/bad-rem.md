@@ -1,6 +1,6 @@
 title: REM是个坑，精确控制不适合
 date: 2015-06-18 14:56:05
-tags:
+tags: [CSS,Solution]
 ---
 前两天需要做一个涂鸦的活动页面，来瞅瞅![年中大促](https://dn-xuqi.qbox.me/yoho-q1.png)
 简要介绍下这个页面，就是一个ABC选择，选中某项后加红色区分然后右侧动画闪动。*[图片版权声明：版权归YOHO所有]*

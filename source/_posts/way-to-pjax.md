@@ -1,6 +1,6 @@
 title: Way To Pjax
 date: 2015-03-16 13:11:37
-tags:
+tags: HandBook
 ---
 ###Pjax = **P**ushState + A**jax**
 

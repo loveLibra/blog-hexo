@@ -1,6 +1,6 @@
 title: 在服务端和客户端使用Handlebars
 date: 2015-01-21 09:11:27
-tags:
+tags: [Plugin,Solution]
 ---
 {% raw %}
 英文原文：<http://tilomitra.com/handlebars-on-the-server-and-client/#comment-13139>

@@ -1,6 +1,6 @@
 title: Handlebars使用指南
 date: 2015-04-30 17:49:41
-tags:
+tags: HandBook
 ---
 
 {% raw %}
