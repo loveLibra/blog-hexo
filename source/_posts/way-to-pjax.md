@@ -13,7 +13,7 @@ Pjax的好处：
 只更新页面中需要替换的那部分资源，layout框架部分不用重新加载
 * 浏览器支持处理
 在不支持PushState或者Ajax的浏览器中，Pjax的功能不被支持，但是不影响正常使用，Pjax会使用原始的页面跳转来处理这种情况
-
+<!-- more -->
 Pjax的实现原理：
 pajx阻止链接的点击默认事件，转为通过ajax从服务器端抓取html并把html填充到需要变更内容的容器中，然后通过PushState更新页面URL。(easy to understand,uh？But we are not the first one to eat crab ~~)
 

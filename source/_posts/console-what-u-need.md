@@ -7,7 +7,7 @@ Mark~，console是前端er最熟知的工具了，但是冰山一角的道理咱
 * console.log
 console.log输出信息到控制台，意思很简单，但格式化输出的功能可能会用的不多，这边提供一个列表供参考:
 <table><tr><th>Format Specifier</th><th>Description</th></tr><tr><td>%s</td><td>Formats the value as a string.</td></tr><tr><td>%d or %i</td><td>Formats the value as an integer.</td></tr><tr><td>%f</td><td>Formats the value as a floating point value.</td></tr><tr><td>%o</td><td>Formats the value as an expandable DOM element</td></tr><tr><td>%O</td><td>Formats the value as an expandable JavaScript object.</td></tr><tr><td>%c</td><td>Formats the output string according to CSS styles you provide.</td></tr></table>
-
+<!-- more -->
 另外，console还提供了另外4种显示信息的方法：console.info、console.debug、console.warn、console.error，分别用来显示一般信息、除错信息、警告提示、错误提示
 
 * console.group

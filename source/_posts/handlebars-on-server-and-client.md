@@ -22,7 +22,7 @@ tags: [Plugin,Solution]
     var tpl = Handlebars.compile($('#login-signup-tpl').html());
     $('body').append(tpl({isLogin: true}));
 功能就是使用Handlebars编译模板并传入json然后得到对应的HTML片段。不过试一下就知道，这样时得不到你想要的东西的。下面带着问题看文章吧...
-
+<!-- more -->
 ------------------------
 #在服务端和客户端使用Handlebars
 

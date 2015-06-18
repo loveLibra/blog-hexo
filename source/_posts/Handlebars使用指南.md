@@ -9,7 +9,7 @@ tags: HandBook
 ## Begin Now
 ### 写在前面
 这里我们只介绍一些Handlebars中相对于Mustache超集的部分，若不了解Mustache，请[移步](http://i0011.com/2015/04/30/Mustache%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/)
-
+<!-- more -->
 ### Expressions
 表达式就是{{}}里面包的东西，Handlebars中语法的最小单位。{{xx}}表示在**当前上下文环境**中去寻找xx属性，并用xx属性的值去替换之。Handlebars支持`.`分隔的属性{{xx.yy}}，但在有的情况下`.`不能解决我们的问题，比如:
 

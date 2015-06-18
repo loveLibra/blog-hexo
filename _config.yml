@@ -5,10 +5,14 @@
 # Site
 title: Sagittarius Love Libra
 subtitle:
-description: 徐祁
-author: xuqi
+description: xuqi's Blog
+author: 徐祁
+author_title: 'Enjoy'
 email: github.xq@gmail.com
-language: zh_CN
+language: zh-CN
+avatar: public/img/avatar.jpg
+location: 'YOHO.cn, NanJing, China'
+follow: https://github.com/loveLibra/
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -79,7 +83,7 @@ disqus_shortname: xuqi
 # Extensions
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
-theme: athena
+theme: icarus
 exclude_generator:
 
 # Deployment

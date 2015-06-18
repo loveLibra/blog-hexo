@@ -9,7 +9,7 @@ tags: HandBook
 再进入正题：mustache是一个轻逻辑的模板引擎（为啥叫“轻逻辑”呢，因为没有if else for等逻辑语句，取而代之的是只用标签实现 ）
 
 mustache.js是mustache模板系统的js实现，或者叫解析器。下面介绍下使用方法，很简单的语法~
-
+<!-- more -->
 ## quick example
 
     Mustache.render('<p>I am {{name}}, I am {{age}} years old</p>', {
