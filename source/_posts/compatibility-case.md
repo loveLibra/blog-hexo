@@ -80,4 +80,8 @@ Windows safari已经停止更新了， 不要再用这个来折磨前端了...
     color: rgba(0,0,0,.5);
 上面是替换色, IE8下会执行, 其他浏览器使用下面的颜色, 按顺序写就行了。 
 
+8 IE8下解决横向排列被换行的问题
+比如下面这种情况[CommodityList](https://dn-xuqi.qbox.me/list.png)，内容固定宽度横向排列，每个右侧有margin-right，:nth-child(4n)的margin-right:0。好嘛，IE8下最后一个就下来了。ie8不认识:nth-child。
+解决办法：将他的父容器的宽度设置成4*(width+margin)就可以了，也就是比原宽度多个margin就可以保证最后一个不被挤下去。另外还有一个没有注意的点是IE是不支持:last-child的。
+IE8一生黑~~
 End with: 没什么高深的东西，慢慢积累就会变成财富。
