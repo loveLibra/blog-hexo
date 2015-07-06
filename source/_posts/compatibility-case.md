@@ -87,5 +87,8 @@ Windows safari已经停止更新了， 不要再用这个来折磨前端了...
 **解决办法**：将他的父容器的宽度设置成4*(width+margin)就可以了，也就是比原宽度多个margin就可以保证最后一个不被挤下去。(开始时没设置父容器宽度的，但是有个外层容器设置了宽度)  
 另外还有一个没有注意的点是IE是不支持:last-child的。  
 
+9 select显示靠右使用direction: rtl
+direction有两个有效值:`rtl`和`ltr`...就是right to left 和 left to right,表示文本从左往右显示从右往左显示。默认ltr  
+
 IE8一生黑~~
 End with: 没什么高深的东西，慢慢积累就会变成财富。
