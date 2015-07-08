@@ -90,5 +90,9 @@ Windows safari已经停止更新了， 不要再用这个来折磨前端了...
 9 select显示靠右使用direction: rtl
 direction有两个有效值:`rtl`和`ltr`...就是right to left 和 left to right,表示文本从左往右显示从右往左显示。默认ltr  
 
+10 新鲜出炉的问题H5的keyup在ios8.0下使用搜狗输入法不能被触发
+好吧，换事件`input`，GAME OVER~  
+因为问题详细解决方案可参考[参考资料](http://segmentfault.com/q/1010000002608898)
+
 IE8一生黑~~
 End with: 没什么高深的东西，慢慢积累就会变成财富。
