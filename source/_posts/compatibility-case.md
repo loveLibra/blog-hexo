@@ -100,5 +100,14 @@ direction有两个有效值:`rtl`和`ltr`...就是right to left 和 left to righ
 12 为select或者input设置label并制定label的for在各浏览器中反应不一样
 以ios为代表的是点击label就相当于点击了它for的对象，安卓机上也有部分有这样的情况...保持统一，拿掉label了（为什么当时脑袋抽风加了一个for呢...）  
 
+13 (移动Andriod)select在focus时在FF下会有边框
+前提，已经写过常规样式`select:focus{border:none;outline:0;}`，事实证明这对firefox是无效了，查资料千辛万苦终于找到了：
+
+    select:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #fff;
+    }
+这个解决方案来自：[参考资料](http://stackoverflow.com/questions/19451183/cannot-remove-outline-dotted-border-from-firefox-select-drop-down)
+
 IE8一生黑~~
 End with: 没什么高深的东西，慢慢积累就会变成财富。
