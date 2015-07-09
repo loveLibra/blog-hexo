@@ -94,5 +94,11 @@ direction有两个有效值:`rtl`和`ltr`...就是right to left 和 left to righ
 好吧，换事件`input`，GAME OVER~  
 因为问题详细解决方案可参考[参考资料](http://segmentfault.com/q/1010000002608898)
 
+11 安卓机下FF34.0会显示select标签的三角号，就算你设置了appearance为none也没有
+其实就这是单纯的FF的bug，你会发现39.0的没有这问题了，其他的版本我没试。所以遇到这样的问题，直接跳过吧，坑爹的很
+
+12 为select或者input设置label并制定label的for在各浏览器中反应不一样
+以ios为代表的是点击label就相当于点击了它for的对象，安卓机上也有部分有这样的情况...保持统一，拿掉label了（为什么当时脑袋抽风加了一个for呢...）  
+
 IE8一生黑~~
 End with: 没什么高深的东西，慢慢积累就会变成财富。
