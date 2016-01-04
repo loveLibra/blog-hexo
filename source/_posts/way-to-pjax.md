@@ -2,7 +2,7 @@ title: Way To Pjax
 date: 2015-03-16 13:11:37
 tags: HandBook
 ---
-###Pjax = **P**ushState + A**jax**
+### Pjax = **P**ushState + A**jax**
 
 Pjax使用在链接跳转页面的情形下，可以将跳转页面转化为页面内异步更新内容，并且同时浏览器URL、Title以及浏览器的回退等功能都能无异于页面跳转。效果可以参考Github上的文件/目录跳转加载，Github就是采用Pjax的方式去实现的。
 
