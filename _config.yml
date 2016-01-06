@@ -78,7 +78,10 @@ per_page: 10
 pagination_dir: page
 
 # Disqus
-disqus_shortname: xuqi
+# disqus_shortname: xuqi
+
+# Duoshuo
+duoshuo_shortname: xuqi
 
 # Extensions
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
