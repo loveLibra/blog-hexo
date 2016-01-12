@@ -85,19 +85,34 @@ class Woman extends People {
     }
 }
 ```
-ES6的代码简洁明了，通过`extends`可以简单的实现类的继承。
+ES6的代码简洁明了，通过`extends`可以简单的实现类的继承。需要注意的是，子类的构造函数中需先调用`super()`从而生成一个父类的实例化对象即`this`，然后再对this进行扩展，因此在super调用前使用this会报错；在ES5中实现对象则相反，先生成子类实例化对象this，然后向this中扩展父类的方法和属性.
 
 ### 扩展：
 1. ES5的继承实现中为什么需要`Woman.prototype.constructor = Woman;`？
 对象都有`constructor`属性，为一个函数，标识构造出该对象的构造函数，对象默认的constructor为`function Object(){...}`；  
 因此该问题中，若不重新制定constructor到Woman(){...}，通过Woman实例化出来的对象的constructor = Woman.prototype.constructor = (new People()).constructor = People(){...}。这显然不是我们想看到的。
 2. ES5中父类和子类的关系到底是怎样串联起来的？
-prototype!constructor!\__proto__\!
+**prototype ! constructor ! \__proto\__ !** 关注对象的constructor和\__proto\__属性以及函数的prototype属性。
 ```javascript
 var sub = new Sub();
-Sub.prototype === Parent; //true
-sub.__proto__ === Parent; //true
-sub.constructor = Sub; //true
 
-Parent.prototype.constructor === Parent; //true
+//true
+sub.__proto__ === Sub.prototype;
+sub.constructor === Sub;
+
+sub instanceof Sub;
+sub instanceof Parent;
+Sub.prototype instanceof Parent;
+
+Parent.prototype.constructor === Parent;
 ```
+3. 更完善的ES5的继承的实现。添加如下代码：
+```javascript
+Object.setPrototypeOf ?
+    Object.setPrototypeOf(Woman, People) :
+    Woman.__proto__ = People;
+```
+上述代码绑定子类的\__proto\__属性为父类，而非默认的Function.prototype，可使`Object.getPrototypeOf(Woman) === People`在ES6和ES5中执行一致。
+
+附：
+![原型原理图](https://dn-xuqi.qbox.me/proto.jpg)
