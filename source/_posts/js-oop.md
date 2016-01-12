@@ -15,6 +15,7 @@ class People {
     }
 }
 ```
+<!-- more -->
 这要是放ES5时代呢？
 ```javascript
 function People(name, age) {
