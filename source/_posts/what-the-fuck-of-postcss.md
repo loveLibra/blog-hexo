@@ -21,6 +21,8 @@ Postcss只是一个工具，获取CSS内容并将其转化成JS插件可以处�
 口说无凭，祭出插件杀器：
 * [autoprefixer](https://github.com/postcss/autoprefixer) 为指定的browsers生成兼容性CSS，你只需按照W3C的标准去书写你的样式就好了，接下的事autoprefixer帮你摆平
 * [precss](https://github.com/postcss/autoprefixer) 如果你需要像Sass提供的:variables、mixins、conditionals等功能，precss是不二之选
+* [postcss-import](https://github.com/postcss/postcss-import) 使用@import，并且可以获取第三方的样式(比如bower或者npm)
+* [cssnano](https://github.com/ben-eb/cssnano) css**优化**(清除注释和尾分号、合并规则，字体权重优化等等等...)，压缩...强大
 * [postcss-assets](https://github.com/assetsjs/postcss-assets) img/font加载路径解决方案，另外还提供获取图片尺寸以及将图片转化为base64写入css的功能
 * ...颜色处理，可读性处理，简化输入，优化，打包，[自行探索>>>](http://postcss.parts/)
 
