@@ -20,10 +20,11 @@ Postcss只是一个工具，获取CSS内容并将其转化成JS插件可以处�
 
 口说无凭，祭出插件杀器：
 * [autoprefixer](https://github.com/postcss/autoprefixer) 为指定的browsers生成兼容性CSS，你只需按照W3C的标准去书写你的样式就好了，接下的事autoprefixer帮你摆平
-* [precss](https://github.com/postcss/autoprefixer) 如果你需要像Sass提供的:variables、mixins、conditionals等功能，precss是不二之选
+* [precss](https://github.com/jonathantneal/precss) 如果你需要像Sass提供的:variables、mixins、conditionals等功能，precss是不二之选
 * [postcss-import](https://github.com/postcss/postcss-import) 使用@import，并且可以获取第三方的样式(比如bower或者npm)
 * [cssnano](https://github.com/ben-eb/cssnano) css**优化**(清除注释和尾分号、合并规则，字体权重优化等等等...)，压缩...强大
 * [postcss-assets](https://github.com/assetsjs/postcss-assets) img/font加载路径解决方案，另外还提供获取图片尺寸以及将图片转化为base64写入css的功能
+* [postcss-sprites](https://github.com/2createStudio/postcss-sprites) image sprite
 * ...颜色处理，可读性处理，简化输入，优化，打包，[自行探索>>>](http://postcss.parts/)
 
 怎么去用？Gulp！你应该享受现代工具~
@@ -40,8 +41,20 @@ gulp.task('css', function() {
             }),
             require('precss'),
             require('postcss-assets')({
-                loadPaths: ['dist/img/'],
-                relativeTo: 'dist/'
+                loadPaths: ['font/', 'img/'],
+                relativeTo: 'css/post/'
+            }),
+            require('postcss-sprites').default({
+                basePath: './img', //img base path
+                stylesheetPath: './css', //path of css generated
+                spritePath: './img', //path of sprites generated
+                spritesmith: {
+                    padding: 2,
+                },
+                groupBy: function(file) {
+                    var group = file.url.split('/')[1]; // 根据目录分组，防止合并后的图片太大
+                    return group ? Promise.resolve(group) : Promise.reject();
+                }
             })
         ]))
         .pipe(sourcemap.write('.'))
@@ -55,8 +68,8 @@ Compass是Sass的扩展，提供了很多牛X的Minix和功能(比如：无可�
 1. Compass需要依赖Ruby，这一点就足够判死刑
 2. Compass提供了很多@mixin，其中也包括类似于autoprefix的功能，但是，前提是：我得知道我要写的属性需要进行prefix处理，所以对大部分人来说，这个功能属于鸡肋功能。对于一些辅助的功能实现的mixin，我们可能会想到去官网搜索，然而，这个比prefix的处理更让人头疼，在一个全站颜色统一，甚至对搜索结果都不做突出的网站上找到想要的API是有多难，搜索结果下你会发现不知所云的搜索结果
 3. 我们并不需要Compass提供的那么多内置mixin
-4. 对compass认知程度有限，上述叙述若有偏颇，勿怪，个人观点...当然，不可否认有很多出色的功能，比如image-sprite和assets的loadPath的处理，友好~
+4. 对compass认知程度有限，上述叙述若有偏颇，勿怪，个人观点...当然，不可否认还是有很多出色的功能的~
 
-对比Compass，我更喜欢Postcss带来的体验，把一切交给npm，无需其他乱七八糟的环境的配置，通过一些基本的插件，可以实现从Compass到Postcss的无缝切换（除image-sprite，官方提供的插件至今未搞清楚使用方式，这点被Compass甩八条街）。Postcss的开放性必然会给以后带来诸多Compass所不会有的好处，可能以后就会出现一个postcss-yoho-sprite帮你实现跟Compass一样好用的image-sprite功能:) 。插件多样性可以帮你处理各种常见问题：嫌每天重复输入相同的width,height...你可以用`postcss-short`或者`postcss-size`；嫌`#3f3f3f`这种输入浪费时间，`postcss-color-short`帮你解决后顾之忧，你只用输入`#3f`；想像写Es6那样享受超前的快感，`cssnext`带你装逼；想摆脱老是写水平居中或者垂直居中的困扰，`postcss-center`助你一臂之力；clearfix的功能在你只用写`clear:fix`的情况下，也有插件`postcss-clearfix`帮你铺平道路；甚至连css的语法检查，也有插件给你两肋插刀...总之大到模块化，小到画三角，应有尽有，各取所需就好...
+对比Compass，我更喜欢Postcss带来的体验，把一切交给npm，无需其他乱七八糟的环境的配置，通过一些基本的插件，可以实现从Compass到Postcss的无缝切换，而且Postcss的开放性必然会给以后带来诸多Compass所不会有的好处。插件多样性可以帮你处理各种常见问题：嫌每天重复输入相同的width,height...你可以用`postcss-short`或者`postcss-size`；嫌`#3f3f3f`这种输入浪费时间，`postcss-color-short`帮你解决后顾之忧，你只用输入`#3f`；想像写Es6那样享受超前的快感，`cssnext`带你装逼；想摆脱老是写水平居中或者垂直居中的困扰，`postcss-center`助你一臂之力；clearfix的功能在你只用写`clear:fix`的情况下，也有插件`postcss-clearfix`帮你铺平道路；甚至连css的语法检查，也有插件给你两肋插刀...总之大到模块化，小到画三角，应有尽有，各取所需就好...
 
 灵活性+开放性+易用性+扩展性....足够了，写Postcss，挺好~
