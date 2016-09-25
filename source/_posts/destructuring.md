@@ -94,3 +94,45 @@ b; // 3
 ```
 
 ## Object destructuring
+同数组，对象也可以按照结构进行析构赋值，文章开头已经举了一个basic assignment的例子，这里就继续说明其他
+的使用场景和注意事项。
+### assignment without declaration
+```javascript
+let a, b;
+({a, b} = {a: 1, b: 2});
+```
+需要注意的是，当析构赋值跟声明分开进行时，析构表达式外的`()`是必须得，否则解析左侧是会当成一个块级表达式，
+从而导致=号的出现而报错。
+
+### assignment to new variable name
+对象的析构可以指定赋值的变量名：
+```javascript
+let {name: theName, info: {age: theAge}} = {
+    name: 'xuqi',
+    info: {
+        age: 27
+    }
+};
+
+theName; // 'xuqi'
+theAge; // 27
+
+```
+之前已经介绍过模式和变量名的形式，这里就很好理解了，由于指定了变量名，name和age只是模式
+
+### default values
+跟数组一样，对象析构也可以设置默认值
+```javascript
+let {a = 1, b:c = 2} = {a: 2};
+
+a; // 2
+c; // 2
+```
+对象析构的默认值有一种比较重要的应用场景：函数的默认参数
+```javascript
+const fn = ({a = 1, b = 2} = {}) => {
+    return [a, b];
+};
+
+fn();
+```
