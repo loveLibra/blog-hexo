@@ -24,8 +24,8 @@ let {name: name, info: {
     age: age
 }} = ...
 ```
-这样理解起来就清楚了。解构可以从数组和对象中提取值，分别来说明
-
+这样理解起来就清楚了。解构可以从数组和对象中提取值，分别来说明...
+<!-- more -->
 ## Array destructuring
 
 ### basic variable assignment
