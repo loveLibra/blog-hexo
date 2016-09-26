@@ -1,6 +1,6 @@
 title: "React server side render"
 date: 2016-01-24 20:20:17
-tags: ['react', 'ssr', 'koa', 'browserify', 'postcss', 'es6']
+tags: ['React', 'Ssr', 'Koa', 'Browserify', 'Postcss', 'Es6']
 ---
 如何使用React开发高效可<del>装B</del>用的WEB应用:) ... 融合React以及React-ssr、koa、Es6、Postcss，绽放吧，骚年...
 

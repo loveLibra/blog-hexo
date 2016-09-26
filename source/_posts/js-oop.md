@@ -1,6 +1,6 @@
 title: "js-oop"
 date: 2016-01-11 15:50:22
-tags: ["JS", "OOP", "ES6"]
+tags: ["Js Basic", "OOP", "Es6"]
 ---
 Javascript可能是一门让人感觉“不适”的语言，实现`类`、`继承`等OOP概念竟然要通过`function`和`prototype`，Jser们可能理解原型机制就能伤半管子HP了。然而，这种情况随着ES6的到来变得好了起来，ES6提供了`class`、`extends`等语法糖可以帮你摆脱让人苦闷的原型（当然，如果你有高追求，你得理解），虽然JS的OOP的实现原理还是通过原型的，但是至少对开发者的友好性提升了很多，让JS更有OOP的味道也更接近于其他OOP的语言。现在我们也能很简单的来声明一个类：
 ```javascript

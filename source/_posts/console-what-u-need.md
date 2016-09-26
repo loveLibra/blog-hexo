@@ -1,6 +1,6 @@
 title: console what u need
 date: 2015-03-06 14:13:14
-tags: JS
+tags: Js Basic
 ---
 Mark~，console是前端er最熟知的工具了，但是冰山一角的道理咱还是自知的，学习学习...此处列出简单的列表和功能说明，若有不理解之处，请移步[阮一峰博客](http://www.ruanyifeng.com/blog/2011/03/firebug_console_tutorial.html)查看详细信息。
 
