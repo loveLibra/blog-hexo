@@ -71,4 +71,4 @@ console.profileEnd();
 参考资料：  
 [阮一峰 - Firebug控制台详解](http://www.ruanyifeng.com/blog/2011/03/firebug_console_tutorial.html)  
 [sf - 你所不知道的Console](https://segmentfault.com/a/1190000006721606?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly)  
-[MSN - console](https://developer.mozilla.org/en-US/docs/Web/API/Console)
+[MDN - console](https://developer.mozilla.org/en-US/docs/Web/API/Console)
