@@ -36,10 +36,15 @@ if (!length || size < 1) {
     return []
 }
 ```
-确保size非负...
+确保size非负以及length为合法值...
 
-虽然处理了数组，但是需不需要考虑ArrayLike的Object
+虽然处理了数组，但是需不需要考虑ArrayLike的Object伪装Array的情况
 ```javascript
 _.chunk({a:1, b:2, length:2}, 2)
 ```
-将得到一个包含两个undefined的数组的数组
+将得到一个包含两个undefined的数组的数组，是否加上数组判断是更nice呢:
+```javascript
+if (!length || !(array instanceof Array) || size < 1) {
+    return [];
+}
+```
