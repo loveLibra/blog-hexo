@@ -82,4 +82,4 @@ const compact = array => {
     return _compact;
 }
 ```
-下意识的用数组`push`，源码惯用下表递增：`result[resIndex++] = value`。性能？
+下意识的用数组`push`，源码惯用下标递增：`result[resIndex++] = value`。性能有影响？
