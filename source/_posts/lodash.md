@@ -27,6 +27,7 @@ const chunk = (array, size = 1) => {
     return _chunk;
 }
 ```
+<!-- more -->
 验证下，功能OK，再来看下lodash的实现方法:
 * 首先，**对参数进行验证**
 ```javascript
@@ -59,3 +60,26 @@ null >>> 0 // 0
 
 '1' >>> 0 // 1 数字字符串将转化为对应的数字
 ```
+
+## compact
+```javascript
+_.compact(array)
+```
+compact -> “压紧、简化”，这个就简单了，移除数组中所有的`falsey`值：
+```javascript
+const compact = array => {
+    let _compact = [];
+    if (array && array.length && array instanceof Array) {
+        let index = -1;
+        let length = array.length;
+
+        while (index++ < length) {
+            if (array[index]) {
+                _compact.push(array[index]);
+            }
+        }
+    }
+    return _compact;
+}
+```
+下意识的用数组`push`，源码惯用下表递增：`result[resIndex++] = value`。性能？
