@@ -98,6 +98,7 @@ const concat = (array, ...values) => {
 }
 ```
 Done! rest参数和数组析构教你做人...对比对比源码看看自己的实现漏了些啥...
+* 基础方法实现es6提供的一些便利，包括arguments对象的参数拆分、数组flatten
 * array参数可以接受非数组，若array非数组，[array]将作为基础数组参与运算
 ```javascript
 return arrayPush(isArray(array) ? copyArray(array) : [array], baseFlatten(args, 1));
@@ -122,4 +123,6 @@ function isLength(value) {
 }
 ```
 这里面需要注意的是`value % 1 == 0`的判断，所有整数都满足这个条件的，除了`-0`
+
+Remark: baseFlatten
 
