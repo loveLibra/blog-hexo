@@ -82,4 +82,44 @@ const compact = array => {
     return _compact;
 }
 ```
-下意识的用数组`push`，源码惯用下标递增：`result[resIndex++] = value`。性能有影响？
+下意识的用`push`插入数组项，而源码惯用下标递增：`result[resIndex++] = value`。性能有影响？
+
+## concat
+```javascript
+_.concat(array, [values])
+```
+实现的就是原生concat的功能，参数处理一下即可：
+```javascript
+const concat = (array, ...values) => {
+    if (array && array instanceof Array) {
+        return array.concat(...values);
+    }
+    return [];
+}
+```
+Done! rest参数和数组析构教你做人...对比对比源码看看自己的实现漏了些啥...
+* array参数可以接受非数组，若array非数组，[array]将作为基础数组参与运算
+```javascript
+return arrayPush(isArray(array) ? copyArray(array) : [array], baseFlatten(args, 1));
+```
+
+前面几个方法我们每个都用到了参数是否为数组的判断，插播lodash关于数组类型判断的方法：
+```javascript
+// array like
+function isArrayLike(value) {
+    // 非null && 非函数 && length为合法的array的length值
+    return value != null && typeof value != 'function' && isLength(value.length)
+}
+
+// is length
+const MAX_SAFE_INTEGER = 9007199254740991
+
+function isLength(value) {
+
+    // 数字 && 大于-1 && 非-0 && 小与最大整型值
+    return typeof value == 'number' &&
+        value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER
+}
+```
+这里面需要注意的是`value % 1 == 0`的判断，所有整数都满足这个条件的，除了`-0`
+
