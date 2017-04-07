@@ -6,7 +6,7 @@ tags: ["Https", "Ubuntu", "Nginx"]
 把大象放进冰箱分三步，那么实现https化你的网站也可以分三步：
 1. `openssl req -newkey rsa:2048 -keyout server.key -out server.csr`在服务器上生成key和csr，可以直接扔在nginx目录，方便。此处需要**注意**的是，生成的private key需要移除passphrase，就是运行前面命令时让输入的`PEM`的值，否则nginx error。
 执行`openssl rsa -in server.key -out unencripted-server.key`就OK了，我们在nginx配置中就使用未加密的key文件
-2. 去[Startssl](www.startssl.com/Certificates/ApplySSLCert?level=1)，将刚才得到的server.csr文件内容填入表单中，Submit！
+2. 去[Startssl](https://www.startssl.com/Certificates/ApplySSLCert?level=1)，将刚才得到的server.csr文件内容填入表单中，Submit！
 ![Startssl配置](https://dn-xuqi.qbox.me/https.png)
 然后下载生成的证书，因为我用的是nginx，就将NginxServer下面的的crt文件scp到服务器中
 3. 配置nginx并将http80重定向到443即可
