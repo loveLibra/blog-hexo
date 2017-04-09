@@ -104,25 +104,23 @@ Done! rest参数和数组析构教你做人...对比对比源码看看自己的�
 return arrayPush(isArray(array) ? copyArray(array) : [array], baseFlatten(args, 1));
 ```
 
-前面几个方法我们每个都用到了参数是否为数组的判断，插播lodash关于数组类型判断的方法：
+关于**数组类型**的判断，我们上面用了`array instanceof Array`这种方式，lodash中`isArray`即`Array.isArray`，来看MDN关于isArray的Polyfill:
 ```javascript
-// array like
-function isArrayLike(value) {
-    // 非null && 非函数 && length为合法的array的length值
-    return value != null && typeof value != 'function' && isLength(value.length)
-}
-
-// is length
-const MAX_SAFE_INTEGER = 9007199254740991
-
-function isLength(value) {
-
-    // 数字 && 大于-1 && 非-0 && 小与最大整型值
-    return typeof value == 'number' &&
-        value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER
+if (!Array.isArray) {
+    Array.isArray = function(arg) {
+        return Object.prototype.toString.call(arg) === '[object Array]';
+    };
 }
 ```
-这里面需要注意的是`value % 1 == 0`的判断，所有整数都满足这个条件的，除了`-0`
+如果toString能吐出`[object Array]`我们就认为他是一个数组，那`instanceof Array`和`isArray`有啥区别？
+> When checking for Array instance, Array.isArray is preferred over instanceof because it works through iframes.
+```javascript
+let xArray = otherFrame.Array();
 
-Remark: baseFlatten
+let arr = new xArray(1,2,3);
 
+arr instanceof Array; // false
+
+Array.isArray(arr); // true
+```
+显然，arr只是xArray(ohterFrame的Array)的instance而并非当前frame的Array的instance，而isArray不受此影响
