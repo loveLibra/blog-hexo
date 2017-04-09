@@ -124,3 +124,29 @@ arr instanceof Array; // false
 Array.isArray(arr); // true
 ```
 显然，arr只是xArray(ohterFrame的Array)的instance而并非当前frame的Array的instance，而isArray不受此影响
+
+## difference
+```javascript
+_.difference(array, [values])
+```
+生成一个从array中过滤掉values中所有元素的数组，即做个数组去重：
+```javascript
+const difference = (array, values) => {
+    if (!values || values.length === 0) {
+        return array;
+    }
+
+    let result = [];
+
+    for (let i = 0; i < array.length; i++) {
+        let the = array[i];
+
+        if (values.indexOf(the) === -1) {
+            result.push(the);
+        }
+    }
+
+    return result;
+};
+```
+源码如何实现，坑有点深啊...
