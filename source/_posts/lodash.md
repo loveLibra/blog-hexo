@@ -150,3 +150,39 @@ const difference = (array, values) => {
 };
 ```
 源码如何实现，坑有点深啊...
+
+## differenceBy
+```javascript
+_.differenceBy(array, [values], [iteratee=_.identity])
+```
+不同于difference的是，differenceBy接受第三个参数iteratee，会按照array中每项转化后的值进行去重，比如：
+```javascript
+_.differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor); // [1.2]
+```
+另外，对于对象数组，iteratee可以为属性字符串，这其实是_.property的简写
+
+不严谨实现方法：
+```javascript
+const differenceBy = (array, ...params) => {
+    if (params.length === 1) {
+        return difference(array, params);
+    }
+
+    let result = [];
+
+    let ite = params.pop();
+
+    let exclude = params.shift().map(i => ite(i));
+
+    for (let i = 0; i < array.length; i++) {
+        let computed = ite(array[i]);
+
+        if (exclude.indexOf(computed)) {
+            result.push(array[i]);
+        }
+    }
+
+    return result;
+}
+```
+
