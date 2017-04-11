@@ -186,3 +186,42 @@ const differenceBy = (array, ...params) => {
 }
 ```
 
+还有一个difference方法...
+
+## differenceWith
+```javascript
+_.differenceWith(array, [values], [comparator])
+```
+differenceWith通过指定comparator，改变默认比较方式去得到相应的去重数组
+
+```javascript
+const differenceWith = (array, ...params) => {
+    if (params.length === 1) {
+        return difference(array, params);
+    }
+
+    let result = [];
+
+    let comparator = params.pop();
+
+    let exclude = params.shift();
+
+    let eLen = exclude.length;
+
+    outer:
+    for (let i = 0; i < array.length; i++) {
+        let the = array[i];
+        let index = 0;
+
+        while (index++ < eLen) {
+            if (comparator(the, exclude[index])) {
+                continue outer;
+            }
+        }
+
+        result.push(the);
+    }
+
+    return result;
+}
+```
