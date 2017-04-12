@@ -225,3 +225,47 @@ const differenceWith = (array, ...params) => {
     return result;
 }
 ```
+上述三个difference方法在去重操作上统一，可以抽象出来个baseDifference基础方法，且上面我们只考虑了简单的值类型的比较，并未考虑引用类型和NaN这种特殊类型的情况
+```javascript
+/**
+ * base difference
+ * @param array [Array]
+ * @param exclude [Array]
+ * @param iteratee [function] 迭代器，对每个元素转化后进行比较
+ * @param comparator [function] 比较器，比较方法
+ * @param return [array]
+ */
+const isArray = Array.isArray;
+
+const baseDifference = (array, exclude, iteratee, comparator) => {
+
+    // 非数组或者数组为空
+    if (!isArray(array) || !array.length) {
+        return [];
+    }
+
+    // 非数组或为空直接返回源数组
+    if (!isArray(exclude) || !exclude.length) {
+        return array;
+    }
+
+    let {length} = array;
+
+    if (iteratee) {
+        exclude = exclude.map(i => iteratee(i));
+    }
+
+    let index = 0;
+
+    outer:
+    while (index++ < length) {
+        let val = array[index];
+
+        val = iteratee ? iteratee(val) : val;
+
+
+    }
+};
+```
+
+这边源码中使用了`value === value`这种方法来判断值是否为NaN，从而区别判断是否includes某个值的方法。但是似乎并没有判断如果数组元素为引用类型的情况啊？是否需要扩展？
