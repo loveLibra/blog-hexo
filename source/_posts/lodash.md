@@ -249,22 +249,48 @@ const baseDifference = (array, exclude, iteratee, comparator) => {
         return array;
     }
 
+    let result = [];
     let {length} = array;
 
     if (iteratee) {
         exclude = exclude.map(i => iteratee(i));
     }
 
-    let index = 0;
+    if (!comparator) {
+        comparator = function(a, b) {
+            if (a === b) {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    let index = -1;
 
     outer:
-    while (index++ < length) {
+    while (++index < length) {
         let val = array[index];
 
-        val = iteratee ? iteratee(val) : val;
+        let iteVal = iteratee ? iteratee(val) : val;
 
+        if (iteVal === iteVal) {
+            // 值类型
 
+            let excludeLength = exclude.length;
+            while (excludeLength--) {
+                let excludei = exclude[excludeLength];
+
+                if (comparator(iteVal, iteratee ? iteratee(excludei) : excludei)) {
+                    continue outer;
+                }
+            }
+
+            result.push(val);
+        }
     }
+
+    return result;
 };
 ```
 
