@@ -305,6 +305,29 @@ const drop = (array, n = 1) => {
         return [];
     }
 
+    n = n < 0 ? 0 : n;
+
     return array.slice(n);
+}
+```
+
+同理，可以从右侧移除n个元素...
+
+## dropRight
+```javascript
+_.dropRight(array, [n=1])
+```
+
+与drop类似，从右侧移除n个元素后返回剩余元素的切片即可
+
+```javascript
+const dropRight = (array, [n = 1]) => {
+    if (!Array.isArray(array)) {
+        return [];
+    }
+
+    n = n < 0 ? 0 : n;
+
+    return array.reverse().slice(n).reverse();
 }
 ```
