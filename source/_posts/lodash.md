@@ -294,4 +294,17 @@ const baseDifference = (array, exclude, iteratee, comparator) => {
 };
 ```
 
-这边源码中使用了`value === value`这种方法来判断值是否为NaN，从而区别判断是否includes某个值的方法。但是似乎并没有判断如果数组元素为引用类型的情况啊？是否需要扩展？
+## drop
+```javascript
+_.drop(array, [n=1])
+```
+生成一个从array开头移除n个元素后剩余的元素的切片，相当于`array.slice(n)`，源数组不变
+```javascript
+const drop = (array, n = 1) => {
+    if (!Array.isArray(array)) {
+        return [];
+    }
+
+    return array.slice(n);
+}
+```
