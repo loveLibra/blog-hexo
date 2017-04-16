@@ -331,3 +331,30 @@ const dropRight = (array, [n = 1]) => {
     return array.reverse().slice(n).reverse();
 }
 ```
+
+在某些情况下，我们需要drop的可能不是从头或者从尾的N个元素这么简单，而是需要从满足某一条件的元素开始，此时就需要用到`dropWhile`和`dropRightWhile`
+
+## dropWhile 和 dropRightWhile
+```javascript
+_.drop[Right]While(array, [predicate=_.identity])
+```
+接受参数`predicate`，接受三个参数`(value, key, array)`，从左/右找到满足条件的第一个元素后返回切片
+```javascript
+const baseDropWhile = (array, predicate, fromRight) => {
+    let {length} = array;
+
+    if (!length || !Array.isArray(array) ||
+        !predicate || typeof predicate !== 'function') {
+        return [];
+    }
+
+    let index = fromRight ? length : -1;
+
+    // nice code
+    while ((fromRight ? index-- : ++index < length) && predicate(array[index], index, array)) {}
+
+    // 注意从右slice时index的值需要+1
+    // slice(start, end)是不包括end元素的
+    return fromRight ? array.slice(0, index + 1) : array.slice(index);
+}
+```
