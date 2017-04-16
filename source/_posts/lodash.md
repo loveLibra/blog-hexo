@@ -328,7 +328,10 @@ const dropRight = (array, [n = 1]) => {
 
     n = n < 0 ? 0 : n;
 
-    return array.reverse().slice(n).reverse();
+    let {length} = array;
+
+    return array.slice(0, length - n);
+    //return array.reverse().slice(n).reverse();
 }
 ```
 
