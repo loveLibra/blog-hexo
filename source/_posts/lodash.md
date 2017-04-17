@@ -369,7 +369,13 @@ _.fill(array, value, [start=0], [end=array.length])
 将array从start到end位置填充value
 
 ```javascript
-const fill = (array, value, start = 0, end = array.length) => {
+const fill = (array, value, start = 0, end = array.length >>> 0) => {
+
+    let {length} = array;
+
+    if (!length) {
+        return [];
+    }
 
     // 确保正确的start和end
     if (start < 0) {
