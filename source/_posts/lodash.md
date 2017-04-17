@@ -361,3 +361,31 @@ const baseDropWhile = (array, predicate, fromRight) => {
     return fromRight ? array.slice(0, index + 1) : array.slice(index);
 }
 ```
+
+## fill
+```javascript
+_.fill(array, value, [start=0], [end=array.length])
+```
+将array从start到end位置填充value
+
+```javascript
+const fill = (array, value, start = 0, end = array.length) => {
+
+    // 确保正确的start和end
+    if (start < 0) {
+        start = -start > length ? 0 : (length + start);
+    }
+
+    if (end < 0) {
+        end += length;
+    }
+
+    end = start > end ? 0 : end;
+
+    while (start < end) {
+        array[start++] = value;
+    }
+
+    return array;
+};
+```
