@@ -395,3 +395,41 @@ const fill = (array, value, start = 0, end = array.length >>> 0) => {
     return array;
 };
 ```
+
+## findLastIndex
+```javascript
+_.findIndex(array, [predicate=_.identity], [fromIndex=0])
+```
+找到array中满足predicate返回为true值的条件的第一个元素的index，可指定查找的起始索引
+```javascript
+const findIndex = (array, predicate, fromIndex = 0) => {
+    let {length} = array;
+
+    if (!length) {
+        return -1;
+    }
+
+    if (!predicate || typeof predicate !== 'function') {
+        return -1;
+    }
+
+    let index = fromIndex >> 0;
+
+    if (index < 0) {
+        index += length;
+    }
+
+    if (index > length) {
+        return -1;
+    }
+
+    while (index < length) {
+        if (predicate(array[index])) {
+            return index;
+        }
+        index++;
+    }
+
+    return -1;
+}
+```
