@@ -433,3 +433,6 @@ const findIndex = (array, predicate, fromIndex = 0) => {
     return -1;
 }
 ```
+同理，也可用findLastIndex从数组尾部找第一个满足条件的元素的index，不赘述
+
+另外，lodash也提供了一些针对predicate的快捷方法，例如：predicate为字符串时，默认使用_.property(predicate)去做条件判断
