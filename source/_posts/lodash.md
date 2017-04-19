@@ -436,3 +436,32 @@ const findIndex = (array, predicate, fromIndex = 0) => {
 同理，也可用findLastIndex从数组尾部找第一个满足条件的元素的index，不赘述
 
 另外，lodash也提供了一些针对predicate的快捷方法，例如：predicate为字符串时，默认使用_.property(predicate)去做条件判断
+
+## flatten
+```javascript
+_.flatten(array)
+```
+扁平array，一层
+```javascript
+const flatten = (array) => {
+    let {length} = array;
+
+    if (!length || !Array.isArray(array)) {
+        return [];
+    }
+
+    let result = [];
+    let index = -1;
+    while (index++ < length) {
+        let item = array[index];
+
+        if (Array.isArray(item)) {
+           result.push(...item);
+        } else {
+            result.push(item);
+        }
+    }
+
+    return result;
+}
+```
