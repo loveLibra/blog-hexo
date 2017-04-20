@@ -492,3 +492,32 @@ const baseFlatten = (array, depth = 1, result = []) => {
 ```
 
 flattenDepth即直接调用baseFlatten并传入array和depth参数；flattenDeep的depth为无穷大，lodash使用`const INFINITY = 1 / 0`重新算出来Infinity，怕覆盖么
+
+## fromPairs
+```javascript
+_.fromPairs(pairs)
+```
+将[[key, value]...]转化为键值对对象{key: value...}
+```javascript
+const fromPairs = pairs => {
+    let {length} = pairs;
+
+    if (!length) {
+        return;
+    }
+
+    let index = -1;
+
+    let result = {};
+    while (++index < length) {
+        let item = pairs[index];
+
+        let key = item[0];
+        let val = item[1];
+
+        result[key] = val;
+    }
+
+    return result;
+}
+```
