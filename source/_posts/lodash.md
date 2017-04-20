@@ -452,7 +452,7 @@ const flatten = (array) => {
 
     let result = [];
     let index = -1;
-    while (index++ < length) {
+    while (++index < length) {
         let item = array[index];
 
         if (Array.isArray(item)) {
@@ -465,3 +465,30 @@ const flatten = (array) => {
     return result;
 }
 ```
+
+关于flatten，还有2个方法flattenDeep(array)和flattenDepth(array, [depth=1])，前者递归扁平所有嵌套数组，后者可指定扁平层级，可以实现baseFlatten基础功能
+```javascript
+const baseFlatten = (array, depth = 1, result = []) => {
+    let {length} = array;
+
+    if (!length) {
+        return [];
+    }
+
+    let index = -1;
+    while(++index < length) {
+        let item = array[index];
+        if (depth > 0) {
+            if (Array.isArray(item)) {
+                baseFlatten(item, depth - 1, result);
+            } else {
+                result.push(item);
+            }
+        }
+    }
+
+    return result;
+}
+```
+
+flattenDepth即直接调用baseFlatten并传入array和depth参数；flattenDeep的depth为无穷大，lodash使用`const INFINITY = 1 / 0`重新算出来Infinity，怕覆盖么
