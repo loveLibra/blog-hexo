@@ -521,3 +521,17 @@ const fromPairs = pairs => {
     return result;
 }
 ```
+
+## head
+```javascript
+_.head(array)
+```
+获取数组的第一个元素
+```javascript
+const head = array => {
+    if (array && array.length) {
+        return array[0];
+    }
+    return;
+}
+```
