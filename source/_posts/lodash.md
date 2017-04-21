@@ -535,3 +535,47 @@ const head = array => {
     return;
 }
 ```
+
+## indexOf
+```javascript
+_.indexOf(array, value, [fromIndex=0])
+```
+从array的指定位置fromIndex开始查找value值的索引，若无则返回-1
+```javascript
+const indexOf = (array, value, fromIndex = 0) => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return -1;
+    }
+
+    // index转化为正整数
+    let index = fromIndex >> 0;
+
+    if (index < 0) {
+        index = Math.max(index + length, 0);
+    }
+
+    // 需要考虑NaN的情况
+    if (value === value) {
+        while (index < length) {
+            if (array[index] === value) {
+                return index;
+            }
+
+            index++;
+        }
+    } else {
+        while (index < length) {
+            if (isNaN(array[index])) {
+                return index;
+            }
+
+            index++;
+        }
+    }
+
+
+    return -1;
+}
+```
