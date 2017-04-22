@@ -579,3 +579,20 @@ const indexOf = (array, value, fromIndex = 0) => {
     return -1;
 }
 ```
+
+## initial
+```javascript
+_.initial(array)
+```
+获取数组除最后一个元素外的切片
+```javascript
+const initial = array => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    return array.slice(0, -1);
+}
+```
