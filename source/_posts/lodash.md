@@ -596,3 +596,51 @@ const initial = array => {
     return array.slice(0, -1);
 }
 ```
+
+## intersection
+```javascript
+_.intersection([arrays])
+_.intersectionBy([arrays], [iteratee=_.identity])
+_.intersectionWith([arrays], [comparator])
+```
+取数组的元素交集，并可以通过iteratee和comparator指定元素预处理或者比较方法来纠正计算结果，此处可以抽象下基础方法
+```javascript
+const baseIntersection = (arrays, iteratee, comparator) => {
+    let {length} = arrays;
+
+    if (length < 2) {
+        return [];
+    }
+
+    let first = arrays.shift();
+
+    let result = [];
+
+    let index = -1;
+    outer:
+    while (++index < first.length) {
+        let item = first[index];
+
+        let i = 0;
+
+        let has = 0;
+
+        while (i++ < length - 1) {
+            let inner = arrays[i];
+
+            if (inner.indexOf(item) > -1) {
+                has++;
+                continue;
+            } else {
+                break outter;
+            }
+
+            if (has === length - 1) {
+                result.push(item);
+            }
+        }
+    }
+
+    return result;
+}
+```
