@@ -621,6 +621,8 @@ const baseIntersection = (arrays, iteratee, comparator) => {
     while (++index < first.length) {
         let item = first[index];
 
+        let computed = iteratee ? iteratee(item) : item;
+
         let i = -1;
 
         let has = 0;
@@ -628,9 +630,10 @@ const baseIntersection = (arrays, iteratee, comparator) => {
         while (++i < length - 1) {
             let inner = arrays[i];
 
-            if (inner.indexOf(item) > -1) {
+            iteratee && (inner = inner.map(iteratee));
+
+            if (inner.indexOf(computed) > -1) {
                 has++;
-                break;
             } else {
                 continue;
             }
