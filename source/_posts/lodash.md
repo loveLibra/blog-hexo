@@ -617,27 +617,27 @@ const baseIntersection = (arrays, iteratee, comparator) => {
     let result = [];
 
     let index = -1;
-    outer:
+
     while (++index < first.length) {
         let item = first[index];
 
-        let i = 0;
+        let i = -1;
 
         let has = 0;
 
-        while (i++ < length - 1) {
+        while (++i < length - 1) {
             let inner = arrays[i];
 
             if (inner.indexOf(item) > -1) {
                 has++;
-                continue;
+                break;
             } else {
-                break outter;
+                continue;
             }
+        }
 
-            if (has === length - 1) {
-                result.push(item);
-            }
+        if (has === length - 1) {
+            result.push(item);
         }
     }
 
