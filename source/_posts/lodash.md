@@ -605,6 +605,22 @@ _.intersectionWith([arrays], [comparator])
 ```
 取数组的元素交集，并可以通过iteratee和comparator指定元素预处理或者比较方法来纠正计算结果，此处可以抽象下基础方法
 ```javascript
+const include = (array, value, comparator) => {
+    if (comparator) {
+        let {length} = array;
+
+        while (length--) {
+            if (comparator(array[length], value)) {
+                return true;
+            }
+        }
+    } else {
+        return array.indexOf(value) > -1
+    }
+
+    return false;
+};
+
 const baseIntersection = (arrays, iteratee, comparator) => {
     let {length} = arrays;
 
@@ -632,7 +648,7 @@ const baseIntersection = (arrays, iteratee, comparator) => {
 
             iteratee && (inner = inner.map(iteratee));
 
-            if (inner.indexOf(computed) > -1) {
+            if (include(inner, computed, comparator)) {
                 has++;
             } else {
                 continue;
