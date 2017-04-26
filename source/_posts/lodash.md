@@ -663,3 +663,21 @@ const baseIntersection = (arrays, iteratee, comparator) => {
     return result;
 }
 ```
+
+## join
+```javascript
+_.join(array, [separator=','])
+```
+array join
+```javascript
+const join = (array, separator = ',') => {
+    let length = array && array.length;
+
+    length = length || 0;
+
+    if (length) {
+        return array.join(separator);
+    }
+    return '';
+}
+```
