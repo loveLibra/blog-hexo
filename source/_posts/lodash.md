@@ -681,3 +681,22 @@ const join = (array, separator = ',') => {
     return '';
 }
 ```
+
+## last
+```javascript
+_.last(array)
+```
+获取数组的最后一个元素
+```javascript
+const last = array => {
+    let length = array && array.length;
+
+    length = length || 0;
+
+    if (length) {
+        return array.slice(-1);
+    }
+
+    return;
+}
+```
