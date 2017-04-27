@@ -700,3 +700,24 @@ const last = array => {
     return;
 }
 ```
+
+## lastIndexOf
+```javascript
+_.lastIndexOf(array, value, [fromIndex=array.length-1])
+```
+获取最后一个匹配的元素的index，可指定查找位置，默认length-1，即从后往前查找
+```javascript
+const lastIndexOf = (array, value, fromIndex) => {
+    let length = array && array.length;
+
+    if (!length) {
+        return -1;
+    }
+
+    fromIndex = fromIndex || length - 1;
+
+    let index = indexOf(array.reverse(), value, (length - 1 - fromIndex)); // 调indexOf方法查找反转的数组
+
+    return index === -1 ? -1 : ((length - 1) - index);
+}
+```
