@@ -721,3 +721,37 @@ const lastIndexOf = (array, value, fromIndex) => {
     return index === -1 ? -1 : ((length - 1) - index);
 }
 ```
+
+## nth
+```javascript
+_.nth(array, [n=0])
+```
+获取数组的第n个元素，n可为负数
+```javascript
+const nth = (array, n = 0) => {
+    let length = array && array.length;
+
+    if (!length) {
+        return;
+    }
+
+    // 转化or验证?
+
+    // 数字
+    // n < maxinter
+    // /^(?:0|[1-9]\d*)$/ 验证无符号整数
+    // n > -1 && n < length
+    // n % 1 === 0
+    n = n >> 0;
+
+    if (n < 0) {
+        n = n + length;
+    }
+
+    if (n > length - 1 || n < 0) {
+        return;
+    }
+
+    return array[n];
+}
+```
