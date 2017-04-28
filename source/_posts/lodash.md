@@ -755,3 +755,32 @@ const nth = (array, n = 0) => {
     return array[n];
 }
 ```
+
+## pull
+```javascript
+_.pull(array, [values])
+```
+移除array中所有values包含的值，会改变目标数组
+```javascript
+const pull = (array, ...values) => {
+    let {length} = array;
+
+    if (!length) {
+        return [];
+    }
+
+    values.forEach(value => {
+        while (true) {
+
+            let index = array.indexOf(value);
+
+            if (index === -1) {
+                break;
+            } else {
+                array.splice(index, 1);
+            }
+        }
+    });
+
+    return array;
+}
