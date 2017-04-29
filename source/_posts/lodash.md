@@ -756,13 +756,13 @@ const nth = (array, n = 0) => {
 }
 ```
 
-## pull
+## pullAll
 ```javascript
-_.pull(array, [values])
+_.pullAll(array, values)
 ```
-移除array中所有values包含的值，会改变目标数组
+移除array中所有values包含的值，会改变目标数组，接受参数values为数组
 ```javascript
-const pull = (array, ...values) => {
+const pullAll = (array, values) => {
     let {length} = array;
 
     if (!length) {
@@ -784,3 +784,21 @@ const pull = (array, ...values) => {
 
     return array;
 }
+```
+
+## pull
+```javascript
+_.pull(array, [values])
+```
+类似pullAll，只是接受的移除的参数为参数列表
+
+```javascript
+const pull = (array, ...values) => {
+    return pullAll(array, values);
+}
+```
+
+## pullAllBy
+```javascript
+_.pullAllBy(array, values, [iteratee=_.identity])
+```
