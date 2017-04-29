@@ -802,3 +802,27 @@ const pull = (array, ...values) => {
 ```javascript
 _.pullAllBy(array, values, [iteratee=_.identity])
 ```
+使用iteratee迭代每个元素进行后进行比较排除
+```javascript
+const pullAllBy = (array, values, iteratee) => {
+    if (iteratee) {
+
+        values.forEach(value => {
+            while (true) {
+
+                let index = array.map(iteratee).indexOf(iteratee(value));
+
+                if (index === -1) {
+                    break;
+                } else {
+                    array.splice(index, 1);
+                }
+            }
+        });
+	} else {
+		return pullAll(array, values)
+	}
+
+	return array;
+}
+```
