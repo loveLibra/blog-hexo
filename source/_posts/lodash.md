@@ -826,3 +826,38 @@ const pullAllBy = (array, values, iteratee) => {
 	return array;
 }
 ```
+
+## pullAllWith
+```javascript
+_.pullAllWith(array, values, [comparator])
+```
+按指定比较规则进行排除
+```javascript
+const pullAllWith = (array, values, comparator) => {
+    if (comparator) {
+
+        values.forEach(value => {
+
+            let index = -1;
+			let {length} = array;
+			let removes = [];
+            while (++index < length) {
+                if (comparator(value, array[index])) {
+					removes.push(index);
+                }
+            }
+
+			// removes为升序index的序列
+			let offset = 0;
+			removes.forEach(i => {
+				array.splice(i - offset++, 1);
+			})
+
+        });
+    } else {
+        return pullAll(array, values);
+    }
+
+    return array;
+}
+```
