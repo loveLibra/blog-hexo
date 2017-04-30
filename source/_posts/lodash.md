@@ -861,3 +861,41 @@ const pullAllWith = (array, values, comparator) => {
     return array;
 }
 ```
+
+## pullAt
+```javascript
+_.pullAt(array, [indexes])
+```
+移除指定位置的元素，并返回移除元素的数组
+```javascript
+const pullAt = (array, indexes = []) => {
+    let {length} = array;
+
+    if (!array) {
+        return [];
+    }
+
+    let offset = 0; // index偏移修正    
+
+    let result = [];
+
+    // 从小到大排序，方便进行偏移修正
+    indexes.sort().forEach(i => {
+        if (!(/^\d+$/).test(i + '')) {
+            return;
+        }
+
+        if (i < 0) {
+            i += length;
+        }
+
+        if (i >= length) {
+            return;
+        }
+
+        result.push(...array.splice(i - offset++, 1));
+    });
+
+    return result;
+}
+```
