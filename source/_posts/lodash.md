@@ -932,3 +932,16 @@ const remove = (array, predicate) => {
     return result;
 }
 ```
+
+## reverse
+```javascript
+const reverse = array => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    return array.reverse();
+}
+```
