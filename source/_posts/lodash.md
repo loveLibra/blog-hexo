@@ -899,3 +899,36 @@ const pullAt = (array, indexes = []) => {
     return result;
 }
 ```
+
+## remove
+```javascript
+_.remove(array, [predicate=_.identity])
+```
+移除array中满足predicate为truthy的元素，predicate接收三个参数(value, index, array)；remove返回删除的元素，并会改变array
+```javascript
+const remove = (array, predicate) => {
+    let length = array ? array.length : 0;
+
+    let result = [];
+
+    if (!length || !predicate) {
+        return result;
+    }
+
+
+    let indexes = [];
+    result = array.filter((item, index) => {
+        if (predicate(item, index, array)) {
+            indexes.push(index);
+
+            return true;
+        }
+
+        return false;
+    });
+
+    pullAt(array, indexes);
+
+    return result;
+}
+```
