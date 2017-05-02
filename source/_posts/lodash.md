@@ -979,3 +979,13 @@ const slice = (array, start, end) => {
     return array.slice(start, end);
 }
 ```
+
+## sortedIndex
+```javascript
+_.sortedIndex(array, value)
+```
+在已排序的array数组中，插入value后维持顺序，确定并返回最小的插入位置索引
+```javascript
+// 二分查找
+```
+源码中，利用位运算求中间值，可关注: `const mid = (low + high) >>> 1`
