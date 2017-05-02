@@ -945,3 +945,37 @@ const reverse = array => {
     return array.reverse();
 }
 ```
+
+## slice
+```javascript
+_.slice(array, [start=0], [end=array.length])
+```
+slice的功能我们在实现chunk的时候就已经完整实现过了，在原生slice方法的基础上，做一些参数的限定和转化
+```javascript
+const slice = (array, start, end) => {
+    let length = array ? array.length : 0;
+
+    if (!lenght) {
+        return [];
+    }
+
+    start = start ? start : 0;
+    end = end ? end : length;
+
+    if (start < 0) {
+        start = -start > length ? 0 : (start + length);
+    }
+
+    if (end < 0) {
+        end += length;
+    }
+
+    end = end > length ? length : end;
+
+    if (start > end) {
+        return [];
+    }
+
+    return array.slice(start, end);
+}
+```
