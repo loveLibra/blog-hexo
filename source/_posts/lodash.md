@@ -985,39 +985,8 @@ const slice = (array, start, end) => {
 _.sortedIndex(array, value)
 ```
 在已排序的array数组中，插入value后维持顺序，确定并返回最小的插入位置索引
-```javascript
-// 二分查找
-const sortedIndex = (array, value) => {
-    let length = array ? array.length : 0;
 
-    let low = 0;
-    let high = length;
-
-    if (typeof value === undefined) {
-        return high;
-    }
-
-    // 即找第一个大于待插入元素值的元素的位置
-    while (low < high) {
-        let middle = (low + high) >>> 1;
-
-        if (array[middle] <= value) {
-            low = middle + 1;
-        } else {
-            high = middle;
-        }
-    }
-
-    return high;
-}
-```
-源码中，利用位运算求中间值，可关注: `const mid = (low + high) >>> 1`
-
-## sortedIndexBy
-```javascript
-_.sortedIndexBy(array, value, [iteratee=_.identity])
-```
-iteratee转化后进行元素比较，iteratee接受一个参数。功能类似与sortedIndex，可以提取baseSortedIndex
+实现sortIndex基础方法：
 ```javascript
 const baseSortedIndex = (array, value, iteratee) => {
     let length = array ? array.length : 0;
@@ -1031,6 +1000,7 @@ const baseSortedIndex = (array, value, iteratee) => {
         return high;
     }
 
+    // 二分查找
     // 即找第一个大于待插入元素值的元素的位置
     while (low < high) {
         let middle = (low + high) >>> 1;
@@ -1045,7 +1015,17 @@ const baseSortedIndex = (array, value, iteratee) => {
     }
 
     return high;
-}
+};
 
+const sortedIndex = (array, value) => baseSortedIndex(array, value);
+```
+源码中，利用位运算求中间值，可关注: `const mid = (low + high) >>> 1`
+
+## sortedIndexBy
+```javascript
+_.sortedIndexBy(array, value, [iteratee=_.identity])
+```
+iteratee转化后进行元素比较，iteratee接受一个参数
+```javascript
 const sortedIndexBy = (array, value, iteratee) => baseSortedIndex(array, value, iteratee);
 ```
