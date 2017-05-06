@@ -1029,3 +1029,27 @@ iteratee转化后进行元素比较，iteratee接受一个参数
 ```javascript
 const sortedIndexBy = (array, value, iteratee) => baseSortedIndex(array, value, iteratee);
 ```
+
+## sortedIndexOf
+```javascript
+_.sortedIndexOf(array, value)
+```
+使用`二分法`binary search查找一个value在已排序数组中的索引
+```javascript
+const sortedIndexOf = (array, value) => {
+    let length = array ? array.length : 0;
+
+    if (length) {
+        // 调用baseSortedIndex找到value插入的位置，再判断插入位置的值是否与value相等
+        // 若不等，则无对应值存在于数组中，返回-1
+        // 另外，需要满足条件，得到的index需要小于length，排出插入到最后的情况
+        let index = baseSortedIndex(array, value);
+
+        if (index < length && array[index] === value) {
+            return index;
+        }
+    }
+
+    return -1;
+}
+```
