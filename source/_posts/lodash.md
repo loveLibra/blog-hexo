@@ -1007,7 +1007,7 @@ const baseSortedIndex = (array, value, iteratee) => {
 
         let midValue = iteratee ? iteratee(array[middle]) : array[middle];
 
-        if (midValue <= iteValue) {
+        if (midValue < iteValue) {
             low = middle + 1;
         } else {
             high = middle;
@@ -1052,4 +1052,66 @@ const sortedIndexOf = (array, value) => {
 
     return -1;
 }
+```
+
+## sortedLastIndex、 sortedLastIndexBy、sortedLastIndexOf
+```javascript
+_.sortedLastIndex(array, value)
+_.sortedLastIndexBy(array, value, [iteratee=_.identity])
+_.sortedLastIndexOf(array, value)
+```
+对于之前的三个sortedIndex的方法，还有三个对应的逆序，在原有的baseSortedIndex的基础上，将二分查找的条件修改下即可：
+```javascript
+
+    //[ < ] --->  [<=]这样在遇到第一个相等的元素后会继续向右查找直到找到最后一个
+    if (midValue <= iteValue) {
+        low = middle + 1;
+    } else {
+        high = middle;
+    }
+}
+```
+在此要求下对baseSortedIndex做个修正并提取baseSortedIndexBy方法，控制一下参数:
+```javascript
+const baseSortedIndex = (array, value, highest) => {
+    return baseSortedIndexBy(array, value, val => val, highest);
+};
+
+const baseSortedIndexBy = (array, value, iteratee, highest) => {
+    let length = array ? array.length : 0;
+
+    let low = 0;
+    let high = length;
+
+    if (!iteratee) {
+        iteratee = val => val;
+    }
+
+    let iteValue = iteratee(value);
+
+    if (typeof iteValue === undefined) {
+        return high;
+    }
+
+    // 二分查找
+    // 即找第一个大于待插入元素值的元素的位置
+    while (low < high) {
+        let middle = (low + high) >>> 1;
+
+        let midValue = iteratee(array[middle]);
+
+        if (highest ? (midValue <= iteValue) : (midValue < iteValue)) {
+            low = middle + 1;
+        } else {
+            high = middle;
+        }
+    }
+
+    return high;
+};
+
+// 实现...
+const sortedLastIndex = (array, value) => baseSortedIndex(array, value, true);
+const sortedLastIndexBy = (array, value, ite) => baseSortedIndexBy(array, value, ite, true);
+// sortedLastIndexOf类似
 ```
