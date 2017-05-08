@@ -1137,7 +1137,7 @@ const sortedUniq = array => {
         let value = array[index];
 
         // 相邻元素值不相等的
-        // 注意：!index判断seen有没有被初始化，不可用!seen，因为seen可能是falsey值
+        // 注意：!index判断seen有没有被初始化，不可用!seen，因为seen可能是falsely值
         if (!index || !eq(value, seen)) {
 
             seen = value;
@@ -1153,5 +1153,48 @@ const sortedUniq = array => {
  */
 const eq = (value, other) => {
     return value === other || (value !== value && other !== other);
+}
+```
+
+## sortedUniqBy
+```javascript
+_.sortedUniqBy(array, [iteratee])
+```
+功能类似，接受迭代器参数，将值转化后做比较，综合`sortedUniq`提取baseSortedUniq方法...
+```javascript
+const baseSortedUniq = (array, iteratee) => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    if (!iteratee) {
+        iteratee = x => x;
+    }
+
+    let index = -1;
+    let result = [];
+    let seen;
+
+    while (++index < length) {
+        let value = array[index];
+
+        let computed = iteratee(value);
+
+        // 相邻元素值不相等的
+        // 注意：!index判断seen有没有被初始化，不可用!seen，因为seen可能是falsely值
+        if (!index || !eq(computed, seen)) {
+
+            seen = computed;
+            result.push(value);
+        }
+    }
+
+    return result;
+}
+
+const sortedUniqBy = (array, iteratee) => {
+    return baseSortedUniq(array, iteratee);
 }
 ```
