@@ -1115,3 +1115,43 @@ const sortedLastIndex = (array, value) => baseSortedIndex(array, value, true);
 const sortedLastIndexBy = (array, value, ite) => baseSortedIndexBy(array, value, ite, true);
 // sortedLastIndexOf类似
 ```
+
+## sortedUniq
+```javascript
+_.sortedUniq(array)
+```
+对已排序数组去重，返回新数组
+```javascript
+const sortedUniq = array => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    let index = -1;
+    let result = [];
+    let seen;
+
+    while (++index < length) {
+        let value = array[index];
+
+        // 相邻元素值不相等的
+        // 注意：!index判断seen有没有被初始化，不可用!seen，因为seen可能是falsey值
+        if (!index || !eq(value, seen)) {
+
+            seen = value;
+            result.push(seen);
+        }
+    }
+
+    return result;
+}
+
+/**
+ * value与other是否相等，NaN !== NaN
+ */
+const eq = (value, other) => {
+    return value === other || (value !== value && other !== other);
+}
+```
