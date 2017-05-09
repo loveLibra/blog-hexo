@@ -1220,3 +1220,22 @@ const tail = array => {
 const [head, ...res] = array; // 666
 return res;
 ```
+
+## take
+```javascript
+_.take(array, [n=1])
+```
+获取从数组开始的n个元素的切片
+```javascript
+const take = (array, n = 1) => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    n = n > 0 ? n : 0;
+
+    return array.slice(0, n);
+}
+```
