@@ -1198,3 +1198,25 @@ const sortedUniqBy = (array, iteratee) => {
     return baseSortedUniq(array, iteratee);
 }
 ```
+
+## tail
+```javascript
+_.tail(array)
+```
+获取除第一个元素的数组切片
+```javascript
+const tail = array => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    return array.slice(1);
+}
+```
+看了下源码的实现，直接用slice有点小low啊，别人都用数组的解构啦！
+```javascript
+const [head, ...res] = array; // 666
+return res;
+```
