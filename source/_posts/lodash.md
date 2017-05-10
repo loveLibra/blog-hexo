@@ -1239,3 +1239,24 @@ const take = (array, n = 1) => {
     return array.slice(0, n);
 }
 ```
+
+## takeRight
+```javascript
+_.takeRight(array, [n=1])
+```
+获取数组结尾的n个元素的切片
+```javascript
+const takeRight = (array, n = 1) => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    if (n > length) {
+        n = length;
+    }
+
+    return array.slice(length - n);
+}
+```
