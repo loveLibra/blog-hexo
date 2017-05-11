@@ -1260,3 +1260,33 @@ const takeRight = (array, n = 1) => {
     return array.slice(length - n);
 }
 ```
+
+## takeWhile
+```javascript
+_.takeWhile(array, [predicate=_.identity])
+```
+从左侧开始切片数组，直到第一个predicate判断返回为false的值位置
+```javascript
+const takeWhile = (array, predicate) => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    if (!predicate) {
+        return array.slice(0);
+    }
+
+    let index = 0;
+    while (index < length) {
+        if (!predicate(array[index])) {
+            break;
+        }
+
+        index++;
+    }
+
+    return array.slice(0, index);
+}
+```
