@@ -1278,15 +1278,42 @@ const takeWhile = (array, predicate) => {
         return array.slice(0);
     }
 
-    let index = 0;
-    while (index < length) {
+    let index = -1;
+    while (++index < length) {
         if (!predicate(array[index])) {
             break;
         }
-
-        index++;
     }
 
     return array.slice(0, index);
+}
+```
+
+## takeRightWhile
+```javascript
+_.takeRightWhile(array, [predicate=_.identity])
+```
+类似takeWhile，takeRightWhile从数组右侧开始寻找，综合takeWhile，来一个`baseTakeWhile`
+```javascript
+const baseTakeWhile = (array, predicate, fromRight) => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    if (!predicate) {
+        return array.slice(0);
+    }
+
+    let index = fromRight ? length : -1;
+
+    while (fromRight ? index-- : ++index < length) {
+        if (!predicate(array[index])) {
+            break;
+        }
+    }
+
+    return fromRight ? array.slice(index + 1) : array.slice(0, index);
 }
 ```
