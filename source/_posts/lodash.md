@@ -1317,3 +1317,25 @@ const baseTakeWhile = (array, predicate, fromRight) => {
     return fromRight ? array.slice(index + 1) : array.slice(0, index);
 }
 ```
+## union
+```javascript
+_.union([arrays])
+```
+数组元素组合，参数接受n个数组
+```javascript
+const union = (...arrays) => {
+    let length = arrays ? arrays.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    let result = [];
+    let index = -1;
+    while (++index < length) {
+        result.splice(result.length, 0, ...arrays[index]);
+    }
+
+    return Array.from(new Set(result));
+}
+```
