@@ -1347,19 +1347,16 @@ _.unionBy([arrays], [iteratee=_.identity])
 接受迭代参数，迭代后相同的项入坑...这样就坑爹啦，上面那个简易的办法用不上啦
 ```javascript
 const unionBy = (...arrays) => {
-    // let iteratee = last(arrays);
     let length = arrays ? arrays.length : 0;
 
     if (!length) {
         return [];
     }
 
+    // let iteratee = last(arrays);
     let iteratee = arrays[length - 1];
 
     length--;
-
-    let parts = arrays.slice(0, -1);
-
 
     let result = [];
     let seen = [];
@@ -1384,5 +1381,49 @@ const unionBy = (...arrays) => {
 
     return result;
 
+}
+```
+上述方法时间复杂度O(n<sup>2</sup>)，应该可以简化到O(n)
+```javascript
+// 先参考union的方法将所有元素合并到数组中，然后再针对iteratee做去重
+const unionBy = (...arrays) => {
+    // 参数拆解同上
+    let length = arrays ? arrays.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    let iteratee = arrays[length - 1];
+
+    length--;
+
+
+	let index = -1;
+    let inter = [];
+     while (++index < length) {
+        inter.splice(inter.length, 0, ...arrays[index]);
+    }
+
+    // 去重
+    let result = [];
+    let seen = [];
+
+    index = -1;
+    length = inter.length;
+
+    while (++index < length) {
+        let val = inter[index];
+        let computed = iteratee(val);
+
+        if (seen.indexOf(computed) > -1) {
+            continue;
+        }
+
+        seen.push(computed);
+        result.push(val);
+    }
+
+    return result;
 }
 ```
