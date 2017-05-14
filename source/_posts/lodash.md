@@ -1339,3 +1339,50 @@ const union = (...arrays) => {
     return Array.from(new Set(result));
 }
 ```
+
+## unionBy
+```javascript
+_.unionBy([arrays], [iteratee=_.identity])
+```
+接受迭代参数，迭代后相同的项入坑...这样就坑爹啦，上面那个简易的办法用不上啦
+```javascript
+const unionBy = (...arrays) => {
+    // let iteratee = last(arrays);
+    let length = arrays ? arrays.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    let iteratee = arrays[length - 1];
+
+    length--;
+
+    let parts = arrays.slice(0, -1);
+
+
+    let result = [];
+    let seen = [];
+    let index = -1;
+
+    while (++index < length) {
+        let array = arrays[index];
+
+        let computed = array.map(iteratee);
+
+        let inner = -1;
+        let innerLen = array.length;
+
+        while (++inner < innerLen) {
+            if (seen.indexOf(computed[inner]) === -1) {
+                seen.push(computed[inner]);
+
+                result.push(array[inner]);
+            }
+        }
+    }
+
+    return result;
+
+}
+```
