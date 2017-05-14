@@ -694,7 +694,7 @@ const last = array => {
     length = length || 0;
 
     if (length) {
-        return array.slice(-1);
+        return array[length - 1];
     }
 
     return;
