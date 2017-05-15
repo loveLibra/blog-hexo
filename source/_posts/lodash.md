@@ -1476,3 +1476,44 @@ const zip = (...arrays) => {
     return result;
 }
 ```
+
+## unzip
+```javascript
+_.unzip(array)
+```
+接收参数跟zip不同，其实功能与`zip`一样，把对应index的元素组合即可，这个操作可以理解为双向操作， 因此通过`...`将列表转化为数组后，执行过程就一致了，我们将上述zip的执行移植过来：
+```javascript
+const unzip = array => {
+    let length = array.length ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    let max = 0;
+    array.forEach(array => {
+        max = Math.max(max, array.length);
+    });
+
+    let index = -1;
+    let result = new Array(max);
+    while (++index < max) {
+
+        let sub = [];
+        let inner = -1;
+        while (++inner < length) {
+            sub[inner] = array[inner][index];
+        }
+
+        result[index] = sub;
+    }
+
+    return result;
+}
+```
+这样zip操作就可以直接调用unzip
+```javascript
+const zip = (...arrays) => {
+    return unzip(arrays);
+}
+```
