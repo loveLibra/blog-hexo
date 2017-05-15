@@ -1432,7 +1432,7 @@ const unionBy = (...arrays) => {
 ```javascript
 _.unionWith([arrays], [comparator])
 ```
-老三样，可指定元素间比较方式
+老三样，可指定元素间比较方式，只是O(n<sup>3</sup>)的复杂度啊...comparator也需要遍历比较
 
 
 ## uniq
