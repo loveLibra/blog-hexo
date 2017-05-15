@@ -1427,3 +1427,52 @@ const unionBy = (...arrays) => {
     return result;
 }
 ```
+
+## unionWith
+```javascript
+_.unionWith([arrays], [comparator])
+```
+老三样，可指定元素间比较方式
+
+
+## uniq
+```javascript
+_.uniq(array)
+```
+所以这是跟`union`是有什么区别呢？一个参数是数组，一个是参数别表，每个参数项是数组？
+包括`uniqBy`和`uniqWith`都是同理的实现
+
+## zip
+```javascript
+_.zip([arrays])
+```
+接受参数为n个数组的参数列表，将参数列表中的数组按照index进行分组，返回分组的新数组
+```javascript
+const zip = (...arrays) => {
+    let length = arrays.length ? arrays.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    let max = 0;
+    arrays.forEach(array => {
+        max = Math.max(max, array.length);
+    });
+
+    let index = -1;
+    let result = new Array(max);
+    while (++index < max) {
+
+        let sub = [];
+        let inner = -1;
+        while (++inner < length) {
+            sub[inner] = arrays[inner][index];
+        }
+
+        result[index] = sub;
+    }
+
+    return result;
+}
+```
