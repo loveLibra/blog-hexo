@@ -1517,3 +1517,34 @@ const zip = (...arrays) => {
     return unzip(arrays);
 }
 ```
+
+## unzipWith
+```javascript
+_.unzipWith(array, [iteratee=_.identity])
+```
+对位的元素使用iteratee进行结合后吐出来，可以先试用unzip转化，然后对没个数组元素进行组合， `iteratee`为接收参数列表的函数
+```javascript
+const unzipWith = (array, iteratee) => {
+    let length = array.length ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    let result = unzip(array);
+
+    return result.map(res => {
+
+        // 数组参数转参数列表
+        return iteratee ? iteratee.apply(null, res) : res
+    });
+}
+```
+zip然后unzipWith能实现某种神奇的转化？yes...比如:
+```javascript
+// iteratee
+const add = (...arr) => arr.reduce((acc, val) => acc + val, 0);
+
+unzipWith(zip([1, 2], [10, 20], [100, 200]), add)
+```
+可实现原数组转化为每项的元素和的数组
