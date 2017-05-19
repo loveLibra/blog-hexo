@@ -1548,3 +1548,30 @@ const add = (...arr) => arr.reduce((acc, val) => acc + val, 0);
 unzipWith(zip([1, 2], [10, 20], [100, 200]), add)
 ```
 可实现原数组转化为每项的元素和的数组
+
+## without
+```javacript
+_.without(array, [values])
+```
+生成一个数组中排出指定元素的新数组，与`pull`功能类似，pull会改变源数组
+```javascript
+const without = (array, ...values) => {
+    let length = array ? array.length : 0;
+
+    if (!length) {
+        return [];
+    }
+
+    let result = [];
+    let index = -1;
+    while (++index < length) {
+        if (values.indexOf(array[index]) > -1) {
+            continue;
+        }
+
+        result.push(array[index]);
+    }
+
+    return result;
+}
+```
