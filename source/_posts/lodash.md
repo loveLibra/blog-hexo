@@ -1575,3 +1575,49 @@ const without = (array, ...values) => {
     return result;
 }
 ```
+
+## xor
+```javascript
+_.xor([arrays])
+```
+亦或运算
+```javascript
+const xor = ...arrays => {
+    let length = arrays.length;
+
+    // 如果参数只传入一个数组，则对该数组元素去重后返回
+    if (length < 2) {
+        return length ? uniq(arrays[0]) : [];
+    }
+
+    let index = -1;
+    let result = [];
+
+    // TODO
+}
+```
+
+## countBy
+```javascript
+_.countBy(collection, [iteratee=_.identity])
+```
+collection中统计各项的数目，也可指定iteratee进行迭代处理
+```javascript
+const countBy = (collection, iteratee) => {
+    let result = {};
+
+    collection.forEach(key => {
+
+		let ite = iteratee ? iteratee(key) : key;
+
+        if (typeof result[ite] === 'undefined') {
+            result[ite] = 1;
+        } else {
+            result[ite] += 1;
+        }
+    });
+
+    return result;
+}
+```
+reduce?
