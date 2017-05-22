@@ -1597,6 +1597,8 @@ const xor = ...arrays => {
 }
 ```
 
+接下来是`collection`系的方法，collection就是Array || Object。大部分方法需要对待处理的collection做类型判断，针对Array和Obejct分别做不同的处理
+
 ## countBy
 ```javascript
 _.countBy(collection, [iteratee=_.identity])
@@ -1621,3 +1623,25 @@ const countBy = (collection, iteratee) => {
 }
 ```
 reduce?
+
+## forEach
+```javascript
+_.forEach(collection, [iteratee=_.identity])
+```
+遍历元素，iteratee接受三个参数`value`,'key','collection'。但是对于对象的each，官方更推荐使用`forIn`或者`forOwn`
+```javascript
+const forEach = (collection, iteratee) => {
+    let isArr = Array.isArray(collection);
+
+    if (isArr) {
+        collection.forEach(iteratee);
+    } else {
+        // 对象情况，用forin遍历，顺序不可控
+        Object.keys(collection).forEach(key => {
+            iteratee(collection[key], key, collection);
+        });
+    }
+
+    return collection;
+}
+```
