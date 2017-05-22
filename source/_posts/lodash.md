@@ -1645,3 +1645,4 @@ const forEach = (collection, iteratee) => {
     return collection;
 }
 ```
+有一点忽略了，某一次iteratee执行`return false`是可以终结整个的循环的，原生的就没有此功能了
