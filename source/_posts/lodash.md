@@ -1645,4 +1645,38 @@ const forEach = (collection, iteratee) => {
     return collection;
 }
 ```
-有一点忽略了，某一次iteratee执行`return false`是可以终结整个的循环的，原生的就没有此功能了
+有一点忽略了，某一次iteratee执行`return false`是可以终结整个的循环的，原生的就没有此功能了，因此在上面的基础上要略做改造
+```javascript
+const forEach = (collection, iteratee) => {
+    let isArr = Array.isArray(collection);
+
+    if (isArr) {
+        let length = collection.length;
+        let index = -1;
+
+        while (++index < length) {
+            let res = iteratee(collection[index], index, collection);
+
+            if (res === false) {
+                break;
+            }
+        }
+    } else {
+        // 对象情况，用forin遍历，顺序不可控
+        let keys = Object.keys(collection);
+        let length = keys.length;
+        let index = -1;
+
+        while (++index < length) {
+            let key = keys[index];
+            let res = iteratee(collection[key], key, collection);
+
+            if (res === false) {
+                break;
+            }
+        }
+    }
+
+    return collection;
+}
+```
