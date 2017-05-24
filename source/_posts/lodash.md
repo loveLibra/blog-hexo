@@ -1680,3 +1680,9 @@ const forEach = (collection, iteratee) => {
     return collection;
 }
 ```
+
+## forEachRight
+```javascript
+_.forEachRight(collection, [iteratee=_.identity])
+```
+与forEach类似，只是从尾向头迭代，不赘述
