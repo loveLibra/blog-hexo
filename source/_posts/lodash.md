@@ -1686,3 +1686,38 @@ const forEach = (collection, iteratee) => {
 _.forEachRight(collection, [iteratee=_.identity])
 ```
 与forEach类似，只是从尾向头迭代，不赘述
+
+## every
+```javascript
+_.every(collection, [predicate=_.identity])
+```
+若collection所有项通过predicate check则返回true，否则返回false。需要注意的是，对空的collection返回值为true，约定
+```javascript
+const every = (collection, predicate) => {
+    let isArr = Array.isArray(collection);
+
+    let keys = !isArr && Object.keys(collection);
+    let length = isArr ? collection.length : keys.length;
+
+    // 空collection返回true
+    if (length === 0) {
+        return true;
+    }
+
+    let index = -1;
+    while (++index < length) {
+        let key;
+        if (isArr) {
+            key = index;
+        } else {
+            key = keys[index];
+        }
+
+        if (!predicate(collection[key], key, collection)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+```
