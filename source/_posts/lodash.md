@@ -1721,3 +1721,37 @@ const every = (collection, predicate) => {
     return true;
 }
 ```
+
+## filter
+```javascript
+_.filter(collection, [predicate=_.identity])
+```
+满足preficate为truthy的元素的数组
+```javascript
+const filter = (collection, predicate) => {
+    let isArr = Array.isArray(collection);
+
+    if (isArr) {
+        return collection.filter(predicate);
+    } else {
+        let result = [];
+
+        let index = -1;
+        let keys = Object.keys(collection);
+
+        let length = keys.length;
+
+        while (++index < length) {
+            let key = keys[index];
+
+            if (predicate(collection[key], key, collection)) {
+				result.push({
+					[key]: collection[key]
+				});
+            }
+        }
+
+        return result;
+    }
+}
+```
