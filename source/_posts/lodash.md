@@ -1755,3 +1755,36 @@ const filter = (collection, predicate) => {
     }
 }
 ```
+
+## find
+```javascript
+_.find(collection, [predicate=_.identity], [fromIndex=0])
+```
+从指定的fromIndex开始查找满足predicate的项并返回，若无则返回undefined
+```javascript
+const find = (collection, predicate, fromIndex) => {
+    let isArr = Array.isArray(collection);
+
+    let keys = Object.keys(collection); // turn array key to string
+    let length = keys.length;
+    let index = fromIndex ? fromIndex - 1 : -1;
+
+    while (++index < length) {
+        let key = keys[index];
+
+        if (isArr) {
+            key = key >>> 0; // turn key to number
+        }
+
+        if (predicate(collection[key], key, collection)) {
+
+           return isArr ? collection[key] : {
+                [key]: collection[key]
+            };
+        }
+    }
+
+    return;
+}
+
+```
