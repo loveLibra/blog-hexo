@@ -1786,5 +1786,36 @@ const find = (collection, predicate, fromIndex) => {
 
     return;
 }
+```
 
+## findLast
+```javascript
+_.findLast(collection, [predicate=_.identity], [fromIndex=collection.length-1])
+```
+与find类似，只是从右往左查找
+```javascript
+const findLast = (collection, predicate, fromIndex) => {
+    let isArr = Array.isArray(collection);
+
+    let keys = Object.keys(collection); // turn array key to string
+    let length = keys.length;
+    let index = fromIndex ? fromIndex : length;
+
+    while (--index > 0) {
+        let key = keys[index];
+
+        if (isArr) {
+            key = key >>> 0; // turn key to number
+        }
+
+        if (predicate(collection[key], key, collection)) {
+
+           return isArr ? collection[key] : {
+                [key]: collection[key]
+            };
+        }
+    }
+
+    return;
+}
 ```
