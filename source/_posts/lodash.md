@@ -1799,8 +1799,16 @@ const findLast = (collection, predicate, fromIndex) => {
 
     let keys = Object.keys(collection); // turn array key to string
     let length = keys.length;
-    let index = fromIndex ? fromIndex : length;
+    let index;
 
+    // 下标为范围
+    if (fromIndex !== undefined) {
+        index = fromIndex < 0 ? Math.max(fromIndex + length, 0) : Math.min(length - 1, fromIndex);
+	} else {
+		index = length - 1;
+	}
+
+    index += 1;
     while (--index > 0) {
         let key = keys[index];
 
@@ -1818,4 +1826,5 @@ const findLast = (collection, predicate, fromIndex) => {
 
     return;
 }
+
 ```
