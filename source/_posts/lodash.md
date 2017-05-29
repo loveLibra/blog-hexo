@@ -1853,3 +1853,49 @@ const groupBy = (collection, iteratee) => {
 }
 ```
 
+## includes
+```javascript
+_.includes(collection, value, [fromIndex=0])
+```
+检查collection中从指定的fromIndex开始是否包含value值，此处collection可以为数组、对象和**字符串**，字符串按照`substring`进行查找
+```javascript
+const includes = (collection, value, fromIndex = 0) => {
+    let length;
+
+    let isStr = typeof collection === 'string';
+
+    if (isStr) {
+        length = collection.length;
+    } else {
+        length = Object.keys(collection).length;
+    }
+
+    if (fromIndex < 0) {
+        fromIndex += length;
+    }
+
+    fromIndex = (fromIndex >= length - 1) ? (length - 1) : fromIndex;
+
+    if (isStr) {
+        return collection.substring(fromIndex).indexOf(value) > -1;
+    } else {
+        let ite = -1;
+        let _include = false;
+        forEach(collection, function(val) {
+            ite++;
+
+            if (ite < fromIndex) {
+                return;
+            } else {
+                if (val === value) {
+                    _include = true;
+                    return false; // take it over
+                }
+            }
+        });
+
+        return _include;
+    }
+}
+``
+
