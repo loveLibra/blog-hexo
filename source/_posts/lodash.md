@@ -1826,5 +1826,30 @@ const findLast = (collection, predicate, fromIndex) => {
 
     return;
 }
-
 ```
+
+## groupBy
+```javascript
+_.groupBy(collection, [iteratee=_.identity])
+```
+根据指定iteratee分组，iteratee迭代每个元素后的值为键，对应的值为之前的元素对应的值所组成的数组，这个借助之前的`forEach`可以很轻松的实现，但这个对单层数组还可以一用，对多层数组或者对象完全鸡肋啊...
+```javascript
+const groupBy = (collection, iteratee) => {
+    let result = {};
+
+    forEach(collection, function(val, key, collection) {
+        let tag = iteratee(val, key, collection);
+
+        tag = tag.toString();
+
+        if (!result[tag]) {
+            result[tag] = [];
+        }
+
+        result[tag].push(val);
+    });
+
+    return result;
+}
+```
+
