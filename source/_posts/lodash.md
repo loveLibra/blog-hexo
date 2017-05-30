@@ -1897,5 +1897,22 @@ const includes = (collection, value, fromIndex = 0) => {
         return _include;
     }
 }
-``
+```
 
+## keyBy
+```javascript
+_.keyBy(collection, [iteratee=_.identity])
+```
+生成键值对，键名由iteratee迭代每个元素后生成，值为collection对应项，注意iteratee只接受一个参数value，并且对于迭代后重复的键名会覆盖，同样使用`forEach`可以简单的完成这个功能
+```javascript
+const keyBy = (collection, iteratee) => {
+	let result = {};
+	forEach(collection, (val, key, collection) => {
+		result[iteratee(val)] = val;
+	});
+
+	return result;
+}
+```
+
+## invokeMap
