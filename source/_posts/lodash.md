@@ -1916,3 +1916,20 @@ const keyBy = (collection, iteratee) => {
 ```
 
 ## invokeMap
+
+## map
+```javascript
+_.map(collection, [iteratee=_.identity])
+```
+返回映射后的数组
+```javascript
+const map = (collection, iteratee) => {
+	let result = [];
+
+	forEach(collection, (val, key, collection) => {
+		result.push(iteratee(val, key, collection));
+	});
+	
+	return result;
+}
+```
