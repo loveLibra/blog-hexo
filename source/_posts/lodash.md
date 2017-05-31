@@ -1933,3 +1933,27 @@ const map = (collection, iteratee) => {
 	return result;
 }
 ```
+
+## size
+```javascript
+_.size(collection)
+```
+可求数组、对象和字符串的尺寸，包括Map和Set
+```javascript
+const size = collection => {
+    if (typeof collection === 'string') {
+        return collection.length;
+    }
+    
+    let tag = collection.toString();
+    if (tag === '[object Set]' || tag === '[object Map]'){
+        return collection.size;
+    }
+
+    return Object.keys(collection).length; // 数组或者对象
+}
+```
+源码一直将包含`length`的非函数变量作为arrayLike，包括数组、字符串和含length属性的类数组对象，可以直接访问到length属性作为size返回。需要修正一下，要不然对于`{a: 1, length: 1}`这样的类数组会出现问题
+```javascript
+
+```
