@@ -1962,7 +1962,6 @@ const isLength = val => {
     return typeof val === 'number' && val > -1 && val % 1 === 0 && val <= 9007199254740991;
 }
 
-
 const isArrayLike = arr => {
     return arr !== null && typeof arr !== 'function' && isLength(arr.length);
 }
@@ -1979,5 +1978,25 @@ const size = collection => {
     }
 
     return Object.keys(collection).length;
+}
+```
+
+## some
+```javascript
+_.some(collection, [predicate=_.identity])
+```
+collection中任一元素predicate返回truthy值，循环**终止**并返回true，否则返回false
+```javascript
+const some = (collection, predicate) => {
+    let _some = false;
+
+    forEach(collection, (val, key, collection) => {
+        if (predicate(val, key, collection)) {
+            _some = true;
+            return false;
+        }
+    });
+
+    return _some;
 }
 ```
