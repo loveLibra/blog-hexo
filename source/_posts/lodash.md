@@ -2000,3 +2000,14 @@ const some = (collection, predicate) => {
     return _some;
 }
 ```
+
+## now
+```javascript
+_.now()
+```
+获取当前时间的毫秒时间戳
+```javascript
+const now () => {
+    return new Date().getTime();
+}
+```
