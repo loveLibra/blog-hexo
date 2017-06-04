@@ -2011,3 +2011,57 @@ const now () => {
     return new Date().getTime();
 }
 ```
+
+## random
+```javascript
+_.random([lower=0], [upper=1], [floating])
+```
+返回lower-upper之间任意的随机数，若lower为传则从0开始，floating=true则会返回浮点数，另外，如果lower或者upper为浮点数，也会返回一个浮点数
+```javascript
+const random = (lower, upper, floating) => {
+    // 接收参数情况较多，需进行参数校准
+
+    // 参数不满
+    if (typeof floating === 'undefined') {
+
+        // 2个参数，第2个参数为浮点数，则第一个参数为upper
+        if (typeof upper === 'boolean') {
+            floating = upper;
+
+            upper = lower;
+
+            lower = undefined;
+        } else if (typeof lower === 'boolean') {
+            // 1个参数
+
+            floating = lower;
+            lower = undefined;
+        }
+    }
+
+    if (typeof lower === 'undefined') {
+        lower = 0;
+    }
+
+    if (typeof upper === 'undefined') {
+        upper = 1;
+    }
+
+    // lower > upper的情况则交换
+    if (lower > upper) {
+        [lower, upper] = [upper, lower];
+    }
+
+    // 通过number % 1判断是否为浮点数
+    if (floating || lower % 1 || upper % 1) {
+        // 范围浮点数的方法有点诡异啊...
+        let rand = Math.random(); // 0 - 1
+        let len = `${rand}`.length;
+
+        return Math.min(lower + (rand * (upper - lower + parseFloat(`1e-${len}`))), upper); // ...
+    }
+
+    // 整数
+    return lower + Math.floor((Math.random() * (upper - lower + 1)));
+}
+```
