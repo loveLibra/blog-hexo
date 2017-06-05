@@ -2065,3 +2065,23 @@ const random = (lower, upper, floating) => {
     return lower + Math.floor((Math.random() * (upper - lower + 1)));
 }
 ```
+
+## mean
+```javascript
+_.mean(array)
+```
+求数字平均数
+```javascript
+const mean = array => {
+    let sum = array.reduce((total, i) => {
+        return total + i;
+    }, 0);
+    let {length} = array;
+
+    if (!length) {
+        return NaN;
+    }
+
+    return sum / length;
+}
+```
