@@ -2066,6 +2066,31 @@ const random = (lower, upper, floating) => {
 }
 ```
 
+## inRange
+```javascript
+_.inRange(number, [start=0], end)
+```
+判断一个数字是否在start和end(不包含end)之间，start为可选参数，默认为0，如果start大于end
+```javascript
+const inRange = (number, start, end) => {
+    if (typeof end === 'undefined') {
+
+        if (typeof start === 'undefined') {
+            return false; // 无range
+        }
+
+        end = start;
+        start = 0;
+    }
+
+    if (end > start) {
+        return number >= start && number < end;
+    } else {
+        return number > end && number <= start;
+    }
+}
+```
+
 ## mean
 ```javascript
 _.mean(array)
