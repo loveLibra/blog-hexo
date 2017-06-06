@@ -2091,6 +2091,33 @@ const inRange = (number, start, end) => {
 }
 ```
 
+## clamp
+```javascript
+_.clamp(number, [lower], upper)
+```
+名字好隐晦...保证返回值在lower和upper之间，小于lower则返回lower，大于upper则返回upper
+```javascript
+const clamp = (number, lower, upper) => {
+    number = ~~number;
+    lower = ~~lower;
+    upper = ~~upper;
+
+    // 判断NaN
+    lower = lower === lower ? lower : 0;
+    upper = upper === upper ? upper : 0;
+
+    if (number === number) {
+        // compare to upper
+        number = number <= upper ? number : upper;
+
+        // compare to lower
+        number = number >= lower ? number : lower;
+    }
+
+    return number;
+}
+```
+
 ## mean
 ```javascript
 _.mean(array)
