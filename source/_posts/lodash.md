@@ -2156,3 +2156,27 @@ const add = (augend, addend) => {
     return augend + addend;
 }
 ```
+
+## ceil
+```javascript
+_.ceil(number, [precision=0])
+```
+数字向上取整，并可指定精度
+```javascript
+const ceil = (number, precision = 0) => {
+    // 这一波precision操作666啊，保持关注
+    if (precision) {
+
+        // 排除科学计数法的数字影响？
+        let pair = `${number}e`.split('e');
+
+        let val = Math.ceil(`${pair[0]}e${~~pair[1] + precision}`); // 可以接受字符串参数...
+
+        pair = `${val}e`.split('e');
+
+        return +`${pair[0]}e${~~pair[1] - precision}`
+    }
+    return Math.ceil(number);
+}
+```
+`Math.ceil(4.231, -2) === 100`哈哈
