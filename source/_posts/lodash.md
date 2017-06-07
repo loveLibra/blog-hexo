@@ -2137,3 +2137,22 @@ const mean = array => {
     return sum / length;
 }
 ```
+
+## add
+```javascript
+_.add(augend, addend)
+```
+不仅可以数字相加，也可以实现字符串的相加，并且参数为空时返回默认值0
+```javascript
+const add = (augend, addend) => {
+    if (typeof augend === 'undefined' && typeof addend === 'undefined') {
+        return 0; // default val
+    }
+
+    if (typeof addend === 'undefined') {
+        addend = typeof augend === 'string' ? '' : 0;
+    }
+
+    return augend + addend;
+}
+```
