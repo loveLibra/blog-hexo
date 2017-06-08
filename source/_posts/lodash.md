@@ -2199,3 +2199,9 @@ const ceil = (number, precision = 0) => {
 }
 ```
 `Math.ceil(4.231, -2) === 100`哈哈
+
+## floor
+```javascript
+_.floor(number, [precision=0])
+```
+同理ceil，方法换为`Math.floor`
