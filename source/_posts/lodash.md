@@ -2157,6 +2157,25 @@ const add = (augend, addend) => {
 }
 ```
 
+## divide
+```javascript
+_.divide(dividend, divisor)
+```
+两数字相除，默认值为1
+```javascript
+const divide = (dividend, divisor) => {
+    if (typeof dividend === 'undefined' && typeof divisor === 'undefined') {
+        return 1; // default val
+    }
+
+    if (typeof divisor === 'undefined') {
+        divisor = 1;
+    }
+
+    return dividend / divisor;
+}
+```
+
 ## ceil
 ```javascript
 _.ceil(number, [precision=0])
