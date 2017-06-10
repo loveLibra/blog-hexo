@@ -2205,3 +2205,36 @@ const ceil = (number, precision = 0) => {
 _.floor(number, [precision=0])
 ```
 同理ceil，方法换为`Math.floor`
+
+## max
+```javascript
+_.max(array)
+```
+接受数字数组，求max... 还有另外一个扩展的方法`_.maxBy(array, [iteratee=_.identity])`可以一起实现
+```javascript
+const baseMax = (array, iteratee) => {
+    let index = 0;
+    let length = array ? array.length : 0;
+
+    if (!iteratee) {
+        iteratee = val => val;
+    }
+
+    let max = array[0];
+    let computedMax = iteratee(max);
+
+    while (++index < length) {
+        let cur = array[index];
+
+        let computed = iteratee(cur);
+
+        // NOTE：symbol不可隐式转化为数字参与比较
+        if (typeof computed !== 'symbol' && computed > computedMax) {
+            max = cur;
+            computedMax = computed;
+        }
+    }
+
+    return max;
+}
+```
