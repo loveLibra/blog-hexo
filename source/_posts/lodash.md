@@ -2268,3 +2268,22 @@ const baseMean = (array, iteratee) => {
     return sum / length;
 }
 ```
+
+## multiply
+```javacript
+_.multiply(multiplier, multiplicand)
+```
+两变量相乘，参数为空时默认值为1
+```javascript
+const multiply = (multiplier, multiplicand) => {
+    if (multiplier === undefined && multiplicand === undefined) {
+        return 1;
+    }
+
+    if (multiplicand === undefined) {
+        return multiplier;
+    }
+
+    return multiplier * multiplicand;
+}
+```
