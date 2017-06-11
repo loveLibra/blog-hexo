@@ -2238,3 +2238,32 @@ const baseMax = (array, iteratee) => {
     return max;
 }
 ```
+
+## mean
+```javascript
+_.mean(array)
+```
+求数组的平均值... 同样也有扩展方法`_.meanBy(array, [iteratee=_.identity])`，iteratee接受一个参数value
+```javascript
+const baseMean = (array, iteratee) => {
+    let {length} = array;
+
+    if (!length) {
+        return NaN;
+    }
+
+    if (!iteratee) {
+        iteratee = val => val;
+    }
+
+    // 因为iteratee的因素，还不能直接用reduce来求sum值
+    let index = -1;
+    let sum = 0;
+    while(++index < length) {
+        let cur = iteratee(array[index]);
+        sum += (cur === undefined ? 0 : cur);
+    }
+
+    return sum / length;
+}
+```
