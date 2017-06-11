@@ -2238,6 +2238,7 @@ const baseMax = (array, iteratee) => {
     return max;
 }
 ```
+另外，同理的还有`min`和`minBy`，不赘述
 
 ## mean
 ```javascript
