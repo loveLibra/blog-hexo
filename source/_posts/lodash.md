@@ -2204,7 +2204,7 @@ const ceil = (number, precision = 0) => {
 ```javascript
 _.floor(number, [precision=0])
 ```
-同理ceil，方法换为`Math.floor`
+同理ceil，方法换为`Math.floor`;还有`round`实现四舍五入的同理
 
 ## max
 ```javascript
@@ -2285,5 +2285,44 @@ const multiply = (multiplier, multiplicand) => {
     }
 
     return multiplier * multiplicand;
+}
+```
+
+## subtract
+```javascript
+_.subtract(minuend, subtrahend)
+```
+减法，有默认值为0...类似乘法不赘述
+
+## sum
+```javascript
+_.sum(array)
+```
+求数组的“加法”运算，也包括字符串，引用上面`mean`求值的sum算式即可。另外，也有`sumBy`方法，接收2个参数，另外一个参数`iteratee`
+```javascript
+const baseSum = (array, iteratee) => {
+    let {length} = array;
+
+    if (!length) {
+        return 0;
+    }
+
+    if (!iteratee) {
+        iteratee = val => val;
+    }
+
+    let index = -1;
+    let sum = 0;
+    while(++index < length) {
+        let cur = iteratee(array[index]);
+
+        if (cur === undefined) {
+            continue;
+        }
+
+        sum += cur;
+    }
+
+    return sum;
 }
 ```
