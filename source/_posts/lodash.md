@@ -1916,6 +1916,21 @@ const keyBy = (collection, iteratee) => {
 ```
 
 ## invokeMap
+```javascript
+_.invokeMap(collection, path, [args])
+```
+path可接收`Array`、`String`和`Function`...接收数组参数是什么套路，没理解？先以函数为例吧，函数的this在迭代中绑定到collection中的每个元素。最后，还有一个可选参数args，可作为参数传给path
+```javascript
+const invokeMap = (collection, path, ...args) => {
+    let result = [];
+
+    forEach(collection, val => {
+        result.push(path.apply(val, args));
+    });
+
+    return result;
+}
+```
 
 ## map
 ```javascript
