@@ -1597,7 +1597,7 @@ const xor = ...arrays => {
 }
 ```
 
-接下来是`collection`系的方法，collection就是Array || Object。大部分方法需要对待处理的collection做类型判断，针对Array和Obejct分别做不同的处理
+# Collection
 
 ## countBy
 ```javascript
@@ -2000,6 +2000,7 @@ const some = (collection, predicate) => {
     return _some;
 }
 ```
+# Date
 
 ## now
 ```javascript
@@ -2011,6 +2012,8 @@ const now () => {
     return new Date().getTime();
 }
 ```
+
+# Number
 
 ## random
 ```javascript
@@ -2117,6 +2120,8 @@ const clamp = (number, lower, upper) => {
     return number;
 }
 ```
+
+# Math
 
 ## mean
 ```javascript
