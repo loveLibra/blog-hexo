@@ -1932,6 +1932,29 @@ const invokeMap = (collection, path, ...args) => {
 }
 ```
 
+## orderBy
+```javascript
+_.orderBy(collection, [iteratees=[_.identity]], [orders])
+```
+TODO留坑
+
+## sample
+```javascript
+_.sample(collection)
+```
+任意返回collection中的一个抽样值
+```javascript
+const sample = collection => {
+    let keys = Object.keys(collection);
+
+    let {length} = keys;
+
+    let rand = keys[Math.floor((Math.random() * (length + 1)))];
+
+    return collection[Array.isArray(collection) ? ~~rand : rand];
+}
+```
+
 ## map
 ```javascript
 _.map(collection, [iteratee=_.identity])
