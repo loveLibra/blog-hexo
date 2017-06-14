@@ -1949,9 +1949,51 @@ const sample = collection => {
 
     let {length} = keys;
 
-    let rand = keys[Math.floor((Math.random() * (length + 1)))];
+    let rand = keys[Math.floor((Math.random() * length))]; // 0 ~ length-1
 
     return collection[Array.isArray(collection) ? ~~rand : rand];
+}
+```
+
+## sampleSize
+```javascript
+_.sampleSize(collection, [n=1])
+```
+获取n个collection中的随机元素，扩展下`sample`方法，然后返回的是个数组
+```javascript
+const sampleSize = (collection, n = 1) => {
+    let result = [];
+    let keys = Object.keys(collection)
+
+    let {length} = keys;
+
+    if (n > length) {
+        n = length;
+    }
+
+    if (n < 1) {
+        n = 1;
+    }
+
+    // 生成n个不同的随机数
+    let i = 0;
+    let chosed = [];
+    while (i < n) {
+        let rand = keys[Math.floor((Math.random() * length))]; // 随机数
+
+        // 保证键值不同
+        if (chosed.indexOf(rand) > -1) {
+            continue;
+        }
+
+		i++;
+
+        chosed.push(rand);
+
+        result.push(collection[Array.isArray(collection) ? ~~rand : rand])
+    }
+
+    return result;
 }
 ```
 
