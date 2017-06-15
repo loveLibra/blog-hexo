@@ -1756,6 +1756,30 @@ const filter = (collection, predicate) => {
 }
 ```
 
+## reject
+```javascript
+_.reject(collection, [predicate=_.identity])
+```
+`filter`的反向操作，过滤掉predicate为truthy值的想，返回剩余项的数组集合
+```javascript
+const filter = (collection, predicate) => {
+    let result = [];
+
+    forEach(collection, (item, index, collection) => {
+        if (predicate(item)) {
+            return;
+        }
+
+
+		result.push(Array.isArray(collection) ? item : {
+			[index]: item
+		});
+    });
+
+    return result;
+}
+```
+
 ## find
 ```javascript
 _.find(collection, [predicate=_.identity], [fromIndex=0])
