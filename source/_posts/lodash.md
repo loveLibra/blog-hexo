@@ -2435,3 +2435,30 @@ const baseSum = (array, iteratee) => {
     return sum;
 }
 ```
+
+# String
+
+## loweFrirst
+```javascript
+_.lowerFirst([string=''])
+```
+小写字符串的首字母
+```javascript
+const lowerFirst = (string = '') => {
+    if (string) {
+        string = typeof string === 'string' ? string : string.toString();
+
+        let head = string.match(/^[A-Z]/);
+
+        head = head ? head[0] : head;
+
+        if (head) {
+            return string.replace(/^([A-Z])(.*)/, `${head.toLowerCase()}$2`)
+        } else {
+            return string;
+        }
+    }
+
+    return string;
+}
+```
