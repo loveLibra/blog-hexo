@@ -2445,7 +2445,7 @@ _.lowerFirst([string=''])
 小写字符串的首字母
 ```javascript
 const lowerFirst = (string = '') => {
-    if (string) {
+    if (string !== null) {
         string = typeof string === 'string' ? string : string.toString();
 
         let head = string.match(/^[A-Z]/);
@@ -2459,6 +2459,28 @@ const lowerFirst = (string = '') => {
         }
     }
 
-    return string;
+    return '';
+}
+```
+
+同理，首字母大写是同样的实现，不赘述
+
+## toLower / toUpper
+```javascript
+// 小写
+_.toLower([string=''])
+// 大写
+_.toUpper([string=''])
+```
+将字符串中的字母转换为小写或者大写，直接调用标准方法即可
+```javascript
+const toLower = (string = '') => {
+    if (string !== null) {
+        string = typeof string === 'string' ? string : string.toString();
+
+        return string.toLowerCase();
+    }
+
+    return '';
 }
 ```
