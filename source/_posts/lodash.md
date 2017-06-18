@@ -2484,3 +2484,14 @@ const toLower = (string = '') => {
     return '';
 }
 ```
+
+## capitalize
+```javascript
+_.capitalize([string=''])
+```
+首字母大写，剩余的小写。先全部转化为小写，再首字母大写就可以了
+```javascript
+const capitalize = (string = '') => {
+    return upperFirst(toLower(string));
+}
+```
