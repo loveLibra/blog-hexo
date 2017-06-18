@@ -2495,3 +2495,35 @@ const capitalize = (string = '') => {
     return upperFirst(toLower(string));
 }
 ```
+
+## endsWith
+```javascript
+_.endsWith([string=''], [target], [position=string.length])
+```
+判断字符串到position位置是否是以target结尾的
+```javascript
+const endsWith = (string, target, position) => {
+    if (string === undefined || target === undefined) {
+        return false;
+    }
+
+    position = position === undefined ?  string.length : +position;
+
+    if (position < 0 || position !== position) {
+        return false;
+    }
+
+    // 正则
+    let sliceStr = string.slice(0, position);
+
+	let regx = new RegExp(`${target}$`);
+
+    return regx.test(sliceStr);
+
+    // 或者也可以通过字符串截取
+    // let end = position;
+    // position -= target.length;
+
+    // return position >= 0 && string.slice(position, end) == target; // 未强等，'123'找数字3也是可以的
+}
+```
