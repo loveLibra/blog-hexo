@@ -2527,3 +2527,47 @@ const endsWith = (string, target, position) => {
     // return position >= 0 && string.slice(position, end) == target; // 未强等，'123'找数字3也是可以的
 }
 ```
+
+## pad
+```javascript
+_.pad([string=''], [length=0], [chars=' '])
+```
+用chars补全字符串到指定length
+```javascript
+const repeat = (str, times) => {
+    let res = str;
+
+    while (--times) {
+        res += str;
+    }
+
+    return res;
+}
+
+const pad = (string, length, chars) => {
+    if (string === undefined) {
+        return '';
+    }
+
+    length = +length;
+
+    let {length: len} = string;
+
+    if (length <= len) {
+        return string;
+    }
+
+    let offset = length - len;
+
+    let left = Math.floor(offset / 2);
+    let right = offset - left;
+
+    chars = chars === undefined ? ' ' : chars.toString();
+
+    let charsLen = chars.length;
+
+    return repeat(chars, Math.ceil(left / charsLen)).slice(0, left) +
+    string +
+    repeat(chars, Math.ceil(right / charsLen)).slice(0, right)
+}
+```
