@@ -2579,3 +2579,44 @@ _.padEnd([string=''], [length=0], [chars=' '])
 _.padStart([string=''], [length=0], [chars=' '])
 ```
 类似于pad，向字符串尾部或者头部补全指定字符串
+
+## repeat
+```javascript
+_.repeat([string=''], [n=1])
+```
+在实现`pad`功能的时候，我们有一个重复字符串的函数
+```javascript
+const repeat = (str, times) => {
+    let res = str;
+
+    while (--times) {
+        res += str;
+    }
+
+    return res;
+}
+```
+So easy？no，至少不是那么完美。比如把'a'重复4次，上面做法需要执行4次字符串合并，那常规做法，我可以把第一次合并的结果再做一次合并就可以了。优化的算法：
+```javascript
+const repeat = (str, times) => {
+    let result = '';
+
+    if (!str || time < 1) {
+        return result;
+    }
+
+    do {
+        if (n % 2) {
+            result += str;
+        }
+
+        n = Math.floor(n / 2);
+
+        if (n) {
+            str += str;
+        }
+    } while (n)
+
+    return result;
+}
+```
