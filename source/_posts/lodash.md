@@ -2571,3 +2571,11 @@ const pad = (string, length, chars) => {
     repeat(chars, Math.ceil(right / charsLen)).slice(0, right)
 }
 ```
+
+## padEnd / padStart
+```javascript
+_.padEnd([string=''], [length=0], [chars=' '])
+//
+_.padStart([string=''], [length=0], [chars=' '])
+```
+类似于pad，向字符串尾部或者头部补全指定字符串
