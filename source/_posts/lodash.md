@@ -2601,21 +2601,21 @@ So easy？no，至少不是那么完美。比如把'a'重复4次，上面做法�
 const repeat = (str, times) => {
     let result = '';
 
-    if (!str || time < 1) {
+    if (!str || times < 1) {
         return result;
     }
 
     do {
-        if (n % 2) {
+        if (times % 2) {
             result += str;
         }
 
-        n = Math.floor(n / 2);
+        times = Math.floor(times / 2);
 
-        if (n) {
+        if (times) {
             str += str;
         }
-    } while (n)
+    } while (times)
 
     return result;
 }
