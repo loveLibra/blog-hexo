@@ -2620,3 +2620,26 @@ const repeat = (str, times) => {
     return result;
 }
 ```
+
+## escape
+```javascript
+_.escape([string=''])
+```
+转义特殊字符：`&`、`<`、`>`、`"`、`'`
+```javascript
+const escapeMap = {
+    '&': '&amp',
+    '<': '&lt',
+    '>': '&gt',
+    '"': '&quot',
+    "'": '&#39'
+};
+
+const escape = (string = '') => {
+    if (string && /[&<>"']/g.test(string)) {
+        return string.replace(/[&<>"']/g, char => escapeMap[char]);
+    }
+
+    return string;
+}
+```
