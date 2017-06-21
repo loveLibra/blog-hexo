@@ -2643,3 +2643,21 @@ const escape = (string = '') => {
     return string;
 }
 ```
+
+## escapeRegExp
+```javascript
+_.escapeRegExp([string=''])
+```
+转义字符串中的正则表达式字符`^`、 `$`、 `.`、 `\`、 `*`、 `+`、 `?`、 `(`、 `)`、 `[`、 `]`、 `{`、 `}`、 `|`
+```javascript
+const reg = /[\\^$.*+?()[\]{}|]/g; // 这里注意\]，防止闭合正则的前[
+
+const escapeRegExp = (string = '') => {
+    if (string && reg.test(string)) {
+        return string.replace(reg, '\\$&'); // $& is matched substring
+    }
+
+    return string;
+}
+```
+顺带小case，除`$&`，字符串替换还有多种模式，Turn to [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_string_as_a_parameter)
