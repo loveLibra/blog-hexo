@@ -2661,3 +2661,21 @@ const escapeRegExp = (string = '') => {
 }
 ```
 顺带小case，除`$&`，字符串替换还有多种模式，Turn to [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_string_as_a_parameter)
+
+## parseInt
+```javascript
+_.parseInt(string, [radix=10])
+```
+字符串转化为数字
+```javascript
+// radix=0时同样表示十进制
+const parseInt = (string, radix = 10) => {
+    if (radix === null) {
+        radix = 10;
+    } else {
+        radix = +radix;
+    }
+
+    return nativeParseInt(string.replace(/^\s+/, ''), radix); //  调native的parseint实现，补：消除头尾空格
+}
+```
