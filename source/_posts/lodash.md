@@ -2668,10 +2668,9 @@ _.parseInt(string, [radix=10])
 ```
 字符串转化为数字
 ```javascript
-// radix=0时同样表示十进制
-const parseInt = (string, radix = 10) => {
+const parseInt = (string, radix) => {
     if (radix === null) {
-        radix = 10;
+        radix = 0;
     } else {
         radix = +radix;
     }
@@ -2679,3 +2678,7 @@ const parseInt = (string, radix = 10) => {
     return nativeParseInt(string.replace(/^\s+/, ''), radix); //  调native的parseint实现，补：消除头尾空格
 }
 ```
+脑补radix值的以及默认参数转化方法，如果radix是`undefined`或者`0`，会自动根据字符串的前缀进行对应的转换数字操作：
+* If the input string begins with "0x" or "0X", radix is 16 (hexadecimal) and the remainder of the string is parsed.
+* If the input string begins with "0", radix is eight (octal) or 10 (decimal).  Exactly which radix is chosen is implementation-dependent.  ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet.  For this reason always specify a radix when using parseInt.（对于`0`开头的字符串，浏览器解析有差异，所以建议parseInt指定radix参数）
+* If the input string begins with any other value, the radix is 10 (decimal).
