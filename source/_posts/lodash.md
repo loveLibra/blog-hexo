@@ -2682,3 +2682,21 @@ const parseInt = (string, radix) => {
 * If the input string begins with "0x" or "0X", radix is 16 (hexadecimal) and the remainder of the string is parsed.
 * If the input string begins with "0", radix is eight (octal) or 10 (decimal).  Exactly which radix is chosen is implementation-dependent.  ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet.  For this reason always specify a radix when using parseInt.（对于`0`开头的字符串，浏览器解析有差异，所以建议parseInt指定radix参数）
 * If the input string begins with any other value, the radix is 10 (decimal).
+
+## replace
+```javascript
+_.replace([string=''], pattern, replacement)
+```
+字符串替换，pattern可以是正则表达式或者字符串
+```javascript
+const replace = (...args) => {
+
+    if (args.length < 3) {
+        return `${args[0]}`;
+    } else {
+        let [string, pattern, replacement] = args;
+
+        return `${string}`.replace(pattern, replacement);
+    }
+}
+```
