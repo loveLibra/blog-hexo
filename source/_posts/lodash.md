@@ -2700,3 +2700,27 @@ const replace = (...args) => {
     }
 }
 ```
+
+## split
+```javascript
+_.split([string=''], separator, [limit])
+```
+字符串分割，也可以指定界限（也就是最终得到的数组的元素个数，原生也有这个参数...）；另外，separator可以是字符串也可以是正则，原生也是支持的...
+```javascript
+const MAX_ARRAY_LENGTH = 4294967295;
+
+const split = (string, separator, limit) => {
+    // 确保limit是一个正整数
+    limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0;
+
+    if (limit === 0) {
+        return [];
+    }
+
+    if (string === undefined) {
+        return '';
+    }
+
+    return string.toString().split(separator, limit);
+}
+```
