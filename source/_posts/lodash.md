@@ -2705,7 +2705,8 @@ const replace = (...args) => {
 ```javascript
 _.split([string=''], separator, [limit])
 ```
-字符串分割，也可以指定界限（也就是最终得到的数组的元素个数，原生也有这个参数...）；另外，separator可以是字符串也可以是正则，原生也是支持的...
+字符串分割，也可以指定界限（也就是最终得到的数组的元素个数，原生也有这个参数...）；
+另外，separator可以是字符串也可以是正则，原生也是支持的...当separator=undefined或者separator没有出现在string中时，返回原字符串；当separator=''时，返回字符串分割成单个字母的数组
 ```javascript
 const MAX_ARRAY_LENGTH = 4294967295;
 
@@ -2724,3 +2725,15 @@ const split = (string, separator, limit) => {
     return string.toString().split(separator, limit);
 }
 ```
+源码
+```javascript
+  if (string && (
+        typeof separator == 'string' ||
+        (separator != null && !isRegExp(separator))
+      )) {
+    if (!separator && hasUnicode(string)) {
+      return castSlice(stringToArray(string), 0, limit)
+    }
+  }
+```
+这是什么样的一个套路，没看明白...
