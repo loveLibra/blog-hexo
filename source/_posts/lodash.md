@@ -2737,3 +2737,48 @@ const split = (string, separator, limit) => {
   }
 ```
 这是什么样的一个套路，没看明白...
+
+## trim
+```javascript
+_.trim([string=''], [chars=whitespace])
+```
+移除字符串开头和结尾的空格或者指定的字符
+```javascript
+const trim = (string, chars) => {
+    if (string === undefined) {
+        return '';
+    }
+
+    if (typeof string !== 'string') {
+        string = string.toString();
+    }
+
+    // 默认替换空格
+    if (chars === undefined) {
+        return string.trim();
+    }
+
+    let {length} = string;
+    let start = 0;
+
+    while (start < length) {
+        if (chars.indexOf(string[start]) === -1) {
+            break;
+        }
+
+        start++;
+    }
+
+    let end = length - 1;
+
+    while (end > 0) {
+        if (chars.indexOf(string[end]) === -1) {
+            break;
+        }
+
+        end--;
+    }
+
+    return string.slice(start, end + 1);
+}
+```
