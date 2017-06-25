@@ -2782,3 +2782,5 @@ const trim = (string, chars) => {
     return string.slice(start, end + 1);
 }
 ```
+
+然后trimStart和trimEnd同理，`String`也有`trimLeft`和`trimRight`方法
