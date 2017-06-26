@@ -2784,3 +2784,23 @@ const trim = (string, chars) => {
 ```
 
 然后trimStart和trimEnd同理，`String`也有`trimLeft`和`trimRight`方法
+
+## words
+```javascript
+_.words([string=''], [pattern])
+```
+字符串分解为单词的数组，而且可以指定匹配的单词的模式
+```javascript
+const words = (string, pattern) => {
+    if (!string) {
+        return [];
+    }
+
+    if (pattern === undefined) {
+        pattern = /\w+/g;
+    }
+
+    return string.match(pattern) || []; // match也是可以接受字符串pattern的...
+}
+```
+这边对于pattern=undefined的情况其实考虑的很简单了，源码还考虑了`ascii`和`unicode`的情况分别处理...这个跑`中文 你好`的时候就挂了...
