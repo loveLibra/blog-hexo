@@ -2803,4 +2803,17 @@ const words = (string, pattern) => {
     return string.match(pattern) || []; // match也是可以接受字符串pattern的...
 }
 ```
-这边对于pattern=undefined的情况其实考虑的很简单了，源码还考虑了`ascii`和`unicode`的情况分别处理...这个跑`中文 你好`的时候就挂了...
+这边对于pattern=undefined的情况其实考虑的很简单了，源码还考虑了`ascii`和`unicode`的情况分别处理...这个跑`中文 你好`的时候就挂了... `word.js`
+
+## camelCase
+```javascript
+_.camelCase([string=''])
+```
+字符串驼峰，这之类的所有的字符串格式化方法都基于之前的单词匹配，匹配到单词后拼接起来
+```javascript
+const camelCase = (string = '') => {
+    return toLower(string).match(/\w+/g).reduce((res, world, index) => {
+        return res + (index ? upperFirst(world) : world);
+    })
+}
+```
