@@ -2814,6 +2814,17 @@ _.camelCase([string=''])
 const camelCase = (string = '') => {
     return toLower(string).match(/\w+/g).reduce((res, world, index) => {
         return res + (index ? upperFirst(world) : world);
-    })
+    }, ''); // reduce函数的初始值可选，不给时默认为数组第一个元素，但当数组是空的时候会报错，此处有风险，应当赋默认值
+}
+```
+
+## kebabCase
+```javascript
+_.kebabCase([string=''])
+```
+转化为中划线分割单词的字符串
+```javascript
+const kebabCase = (string = '') => {
+    return toLower(string).match(/\w+/g).join('-');
 }
 ```
