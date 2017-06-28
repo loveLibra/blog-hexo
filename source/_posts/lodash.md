@@ -2859,3 +2859,12 @@ const castArray = (...arg) => {
     return [value];
 }
 ```
+
+## eq
+```javascript
+_.eq(value, other)
+```
+value和other是否「强相等」，但这里NaN和NaN相等
+```javascript
+const eq = (value, other) => value === other || (value !== value && other !== other);
+```
