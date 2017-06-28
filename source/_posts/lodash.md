@@ -2828,3 +2828,5 @@ const kebabCase = (string = '') => {
     return toLower(string).match(/\w+/g).join('-');
 }
 ```
+
+包括`snakeCase`以下划线分割，也是同理
