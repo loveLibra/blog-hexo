@@ -2803,7 +2803,7 @@ const words = (string, pattern) => {
     return string.match(pattern) || []; // match也是可以接受字符串pattern的...
 }
 ```
-这边对于pattern=undefined的情况其实考虑的很简单了，源码还考虑了`ascii`和`unicode`的情况分别处理...这个跑`中文 你好`的时候就挂了... `word.js`
+这边对于pattern=undefined的情况其实考虑的很简单了，源码还考虑了`ascii`和`unicode`的情况分别处理...这个跑`中文 你好`的时候就挂了... `word.js`有点弱鸡啊，急需靠拢源码
 
 ## camelCase
 ```javascript
@@ -2829,4 +2829,33 @@ const kebabCase = (string = '') => {
 }
 ```
 
-包括`snakeCase`以下划线分割，也是同理
+包括`lowerCase`小写空格分割、`snakeCase`以下划线分割，也是同理
+
+## template
+```javascript
+//TODO
+```
+
+# Lang
+
+## castArray
+```javascript
+_.castArray(value)
+```
+如果value不是一个数组，就给他包成一个数组
+```javascript
+const castArray = (...arg) => {
+    // 没有参数的情况，返回空数组，需要特殊处理，跟参数为undefined不同
+    if (arg.length === 0) {
+        return [];
+    }
+
+    let value = arg[0];
+
+    if (Array.isArray(value)) {
+        return value;
+    }
+
+    return [value];
+}
+```
