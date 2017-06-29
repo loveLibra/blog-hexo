@@ -2868,3 +2868,20 @@ value和other是否「强相等」，但这里NaN和NaN相等
 ```javascript
 const eq = (value, other) => value === other || (value !== value && other !== other);
 ```
+
+## gt
+```javascript
+_.gt(value, other)
+```
+value > other则返回true，否则返回false；需要注意的时，当两个参数都是字符串时，进行字符串比较，其余的都转化为数字进行比较
+```javascript
+const gt = (value, other) => {
+    if (!(typeof value === 'string' && typeof other === 'string')) {
+        value = +value;
+        other = +other;
+    }
+
+    return value > other;
+}
+```
+`lt`、`lte`和`gte`同理...
