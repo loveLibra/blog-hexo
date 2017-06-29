@@ -2885,3 +2885,14 @@ const gt = (value, other) => {
 }
 ```
 `lt`、`lte`和`gte`同理...
+
+## isArguments
+```javascript
+_.isArguments(value)
+```
+检查传入值是否是arguments对象
+```javascript
+const isArguments = value => {
+    return typeof value === 'object' && value !== null && value.toString() === '[object Arguments]';
+}
+```
