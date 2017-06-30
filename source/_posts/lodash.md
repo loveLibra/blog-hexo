@@ -2896,3 +2896,22 @@ const isArguments = value => {
     return typeof value === 'object' && value !== null && value.toString() === '[object Arguments]';
 }
 ```
+
+## isArray
+```javascript
+_.isArray(value)
+```
+判断是否为数组
+```javascript
+const isArray = value => {
+    const _isArray = Array.isArray;
+
+    if (!_isArray) {
+        _isArray = function(arg) {
+            return Object.prototype.toString.call(arg) === '[object Array]';
+        };
+    }
+
+    return _isArray(value);
+}
+```
