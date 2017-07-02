@@ -2915,3 +2915,9 @@ const isArray = value => {
     return _isArray(value);
 }
 ```
+
+## isArrayBuffer
+```javascript
+_.isArrayBuffer(value)
+```
+判断是否为ArrayBuffer。同样，通过`toString`也能得到ArrayBuffer的tag为`[object ArrayBuffer]`
