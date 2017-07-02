@@ -2059,17 +2059,6 @@ const size = collection => {
 ```
 源码一直将包含`length`的非函数变量作为arrayLike，包括数组、字符串和含length属性的类数组对象，可以直接访问到length属性作为size返回。需要修正一下，要不然对于`{a: 1, length: 1}`这样的类数组会出现问题
 ```javascript
-// length合法值
-const isLength = val => {
-
-    // 数字 && 非负 && 非负0 && 小于最大正整数
-    return typeof val === 'number' && val > -1 && val % 1 === 0 && val <= 9007199254740991;
-}
-
-const isArrayLike = arr => {
-    return arr !== null && typeof arr !== 'function' && isLength(arr.length);
-}
-
 const size = collection => {
     if (isArrayLike(collection)) {
         return collection.length;
@@ -2921,3 +2910,20 @@ const isArray = value => {
 _.isArrayBuffer(value)
 ```
 判断是否为ArrayBuffer。同样，通过`toString`也能得到ArrayBuffer的tag为`[object ArrayBuffer]`
+
+## isArrayLike
+```javascript
+_.isArrayLike(value)
+```
+首先，明确ArrayLike的特征为：非函数的value有length属性，length为整数且0 <= value.length <= Number.MAX_SAFE_INTEGER
+```javascript
+const isLength = val => {
+
+    // 数字 && 非负 && 除「-0」的非负「整数」 && 小于最大正整数
+    return typeof val === 'number' && val > -1 && val % 1 === 0 && val <= Number.MAX_SAFE_INTEGER;
+}
+
+const isArrayLike = value => {
+    return value !== null && typeof value !== 'function' && isLength(value.length);
+}
+```
