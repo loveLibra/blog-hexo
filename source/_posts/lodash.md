@@ -2927,3 +2927,9 @@ const isArrayLike = value => {
     return value !== null && typeof value !== 'function' && isLength(value.length);
 }
 ```
+
+## isArrayLikeObject
+```javascript
+_.isArrayLikeObject(value)
+```
+在`isArrayLike`的基础上加了个条件：判断value得是Object
