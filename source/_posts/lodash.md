@@ -2933,3 +2933,15 @@ const isArrayLike = value => {
 _.isArrayLikeObject(value)
 ```
 在`isArrayLike`的基础上加了个条件：判断value得是Object
+
+## isBoolean
+```javascript
+_.isBoolean(value)
+```
+可以检验值是否为布尔型变量，可以是原始值类型（true / false）也可以是Boolean的实例对象
+```javascript
+const isBoolean = value => {
+    return value === true || value === false ||
+        (value !== null && Object.prototype.toString.call(value) === '[object Boolean]')
+}
+```
