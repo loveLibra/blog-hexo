@@ -2954,6 +2954,20 @@ _.isNumber(value);
 ```javascript
 const isNumber = value => {
     return typeof value === 'number' ||
-        Object.prototype.toString.call(value) === '[object Number]');
+        Object.prototype.toString.call(value) === '[object Number]';
+}
+```
+
+## isNaN
+```javascript
+_.isNaN(value)
+```
+原生`isNaN`方法会对非数字都返回true，而不光是NaN，lodash仅对NaN本身以及`new Number(NaN)`的情况返回true
+```javascript
+const isNaN = value => {
+
+    // 首先判断是否为数字
+    // 然后区分是否跟本身相等
+    return isNumber(value) && value !== +value; // +value是为了排除什么情况呢？
 }
 ```
