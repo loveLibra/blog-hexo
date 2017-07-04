@@ -2945,3 +2945,15 @@ const isBoolean = value => {
         (value !== null && Object.prototype.toString.call(value) === '[object Boolean]')
 }
 ```
+
+## isNumber
+```javascript
+_.isNumber(value);
+```
+判断参数是否为数字，同样对于原始类型和Number的实例都适用
+```javascript
+const isNumber = value => {
+    return typeof value === 'number' ||
+        Object.prototype.toString.call(value) === '[object Number]');
+}
+```
