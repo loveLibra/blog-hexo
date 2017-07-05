@@ -2968,6 +2968,7 @@ const isNaN = value => {
 
     // 首先判断是否为数字
     // 然后区分是否跟本身相等
-    return isNumber(value) && value !== +value; // +value是为了排除什么情况呢？
+
+    return isNumber(value) && value != +value; // 非强等
 }
 ```
