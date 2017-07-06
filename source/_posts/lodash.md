@@ -2980,6 +2980,17 @@ _.isNil(value)
 判断参数是否为undefined或者null
 ```javascript
 const isNil = value => {
-    return value === undefined || value === null;
+    return value === undefined || value === null; // value == null
+}
+```
+
+## isNull
+```javascript
+_.isNull(value)
+```
+判断参数是否为null
+```javascript
+const isNull = value => {
+    return value === null;
 }
 ```
