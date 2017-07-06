@@ -2972,3 +2972,14 @@ const isNaN = value => {
     return isNumber(value) && value != +value; // 非强等
 }
 ```
+
+## isNil
+```javascript
+_.isNil(value)
+```
+判断参数是否为undefined或者null
+```javascript
+const isNil = value => {
+    return value === undefined || value === null;
+}
+```
