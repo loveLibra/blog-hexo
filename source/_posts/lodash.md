@@ -2994,3 +2994,17 @@ const isNull = value => {
     return value === null;
 }
 ```
+
+## isObject
+```javascript
+_.isObject(value)
+```
+是否为对象(包括数组、函数、对象、正则等等非原始数据类型...)
+```javascript
+const isObject = value => {
+    var type = typeof value;
+
+    // null && 对象或者函数
+    return value != null && (type === 'object' || type === 'function');
+}
+```
