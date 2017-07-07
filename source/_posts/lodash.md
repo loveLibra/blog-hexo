@@ -3008,3 +3008,14 @@ const isObject = value => {
     return value != null && (type === 'object' || type === 'function');
 }
 ```
+
+## isObjectLike
+```javascript
+_.isObjectLike(value)
+```
+检查value是否为Object-Like（非null并满足typeof vlaue === 'object'）
+```javascript
+const isObjectLike = value => {
+    return value !== null && typeof value === 'object';
+}
+```
