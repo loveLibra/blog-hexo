@@ -3019,3 +3019,40 @@ const isObjectLike = value => {
     return value !== null && typeof value === 'object';
 }
 ```
+
+## isPlainObject
+```javascript
+_.isPlainObject(value)
+```
+检查是否为plain object（object.constructor === Object || object.[[prototype]] === null）
+```javascript
+const isPlainObject = value => {
+    // 首先满足是个对象并且排除掉一些内置的对象,比如Date这些
+    if (!isObjectLike(value) || Object.prototype.toString.call(value) !== '[object Object]') {
+        return false;
+    }
+
+    // 先看value.[[prototype]]是否为null，[[prototype]]是不可见的属性，通过Object.getPrototype可以获取
+    let proto = Object.getPrototypeOf(value);
+
+    if (proto === null) {
+        return true;
+    }
+    // 承上，这边需要说一下，默认创建的总是有[[prototype]]指向Object.prototype的，但是为啥会有null的情况呢，因为有Object.create(null)啊！指定[[prototype]]是null，也就变成了食物链顶端的男人...需要考虑这种情况
+
+    // 接下来判断对象是不是通过Object构造函数构造出来的
+    // contructor是可以篡改的...
+    let constructor = Object.prototype.hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+
+    if (typeof constructor === 'function' &&
+        // instanceof 检查是是否在左参数是否在右参数的原型链中
+        // 除constructor是Object外，其他构造函数不满足此条件
+        // 对于Object，Object.__proto__ === Function.prototype，Function.prototype.__proto__ === Object.prototype
+        constructor instanceof constructor &&
+        // 检查contructor字符串是否是Object的字符串
+        Function.prototype.toString.call(constructor) === Function.prototype.toString.call(Object)) {
+            return true;
+        }
+    return false;
+}
+```
