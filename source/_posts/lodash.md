@@ -3056,3 +3056,15 @@ const isPlainObject = value => {
     return false;
 }
 ```
+
+## isRegExp
+```javascript
+_.isRegExp(value)
+```
+检查是否为正则
+```javascript
+const isRegExp = value => {
+    // 官网似乎还做了个node环境下直接用util.isRegExp去判断的，但是看Node API似乎已经被Deprecated啦
+    return isObjectLike(value) && Object.prototype.toString.call(value) === '[object RegExp]';
+}
+```
