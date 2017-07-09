@@ -3068,3 +3068,20 @@ const isRegExp = value => {
     return isObjectLike(value) && Object.prototype.toString.call(value) === '[object RegExp]';
 }
 ```
+
+## isSafeInteger
+```javascript
+_.isSafeInteger(value)
+```
+也就是 -(2^53 - 1) ~ （2^53 - 1）之间的整数。ES6直接提供了方法`Number.isSafeInteger`可以直接实现...当然，考虑IE的话还是需要Polyfill的
+```javascript
+const isInteger = value => {
+    return typeof value === 'number' &&
+        isFinite(value) &&
+        Math.floor(value) === value;
+}
+
+const isSafeInteger = value => {
+    return isInteger(value) && Math.abs(value) <= Number.MAX_SAFE_INTEGER;
+}
+```
