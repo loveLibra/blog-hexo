@@ -3085,3 +3085,6 @@ const isSafeInteger = value => {
     return isInteger(value) && Math.abs(value) <= Number.MAX_SAFE_INTEGER;
 }
 ```
+
+## isSet / isWeekSet / isMap / isWeekMap
+Set和Map都可以通过`Object.prototype.toString.call(value)`的值去判断，分别为'[object Set]'、'[object WeekSet]'、'[object Map]'、'[object WeekMap]'
