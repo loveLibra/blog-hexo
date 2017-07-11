@@ -3095,5 +3095,16 @@ _.isString(value)
 ```
 检查是否为字符串
 ```javascript
-const isString = value => typeof value === 'string' || Obejct.prototype.toString.call(value) === '[object String]');
+const isString = value => typeof value === 'string' ||
+    Obejct.prototype.toString.call(value) === '[object String]';
+```
+
+## isSymbol
+```javascript
+_.isSymbol(value)
+```
+检查是否为symbol值
+```javascript
+const isSymbol = value => typeof value === 'symbol' ||
+    Obejct.prototype.toString.call(value) === '[object Symbol]';
 ```
