@@ -3088,3 +3088,12 @@ const isSafeInteger = value => {
 
 ## isSet / isWeekSet / isMap / isWeekMap
 Set和Map都可以通过`Object.prototype.toString.call(value)`的值去判断，分别为'[object Set]'、'[object WeekSet]'、'[object Map]'、'[object WeekMap]'
+
+## isString
+```javascript
+_.isString(value)
+```
+检查是否为字符串
+```javascript
+const isString = value => typeof value === 'string' || Obejct.prototype.toString.call(value) === '[object String]');
+```
