@@ -1,4 +1,4 @@
-title: lodash源码祭(Math)
+title: Lodash源码祭(Math)
 date: 2017-07-12 19:02:21
 tags: [Lodash, Math]
 ---
