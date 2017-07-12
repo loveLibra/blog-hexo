@@ -1,7 +1,9 @@
-title: Lodash源码祭(Array)
+title: Lodash源码祭「Array」
 date: 2017-07-12 19:09:17
 tags: [Lodash, Array]
 ---
+> 巧妙的函数实现吸引着你想去看看他的实现方法，里面会有更多奇思妙想让你欣喜若狂...
+
 # Array
 
 ## chunk

@@ -1,7 +1,9 @@
-title: Lodash源码祭(String)
+title: Lodash源码祭「String」
 date: 2017-07-12 19:00:27
 tags: [Lodash, String]
 ---
+> 巧妙的函数实现吸引着你想去看看他的实现方法，里面会有更多奇思妙想让你欣喜若狂...
+
 # String
 
 ## loweFrirst
@@ -28,9 +30,9 @@ const lowerFirst = (string = '') => {
     return '';
 }
 ```
+<!-- more -->
 
 同理，首字母大写是同样的实现，不赘述
-
 ## toLower / toUpper
 ```javascript
 // 小写

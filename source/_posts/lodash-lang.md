@@ -1,7 +1,9 @@
-title: Lodash源码祭(Lang)
+title: Lodash源码祭「Lang」
 date: 2017-07-12 18:58:41
 tags: [Lodash, Lang]
 ---
+> 巧妙的函数实现吸引着你想去看看他的实现方法，里面会有更多奇思妙想让你欣喜若狂...
+
 # Lang
 
 ## castArray
@@ -25,7 +27,7 @@ const castArray = (...arg) => {
     return [value];
 }
 ```
-
+<!-- more -->
 ## eq
 ```javascript
 _.eq(value, other)

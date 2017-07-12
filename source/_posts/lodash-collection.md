@@ -1,7 +1,9 @@
-title: Lodash源码祭(Collection)
+title: Lodash源码祭「Collection」
 date: 2017-07-12 19:05:36
 tags: [Lodash, Collection]
 ---
+> 巧妙的函数实现吸引着你想去看看他的实现方法，里面会有更多奇思妙想让你欣喜若狂...
+
 # Collection
 
 ## countBy
@@ -28,7 +30,7 @@ const countBy = (collection, iteratee) => {
 }
 ```
 reduce?
-
+<!-- more -->
 ## forEach
 ```javascript
 _.forEach(collection, [iteratee=_.identity])

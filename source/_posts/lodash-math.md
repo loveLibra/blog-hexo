@@ -1,7 +1,9 @@
-title: Lodash源码祭(Math)
+title: Lodash源码祭「Math」
 date: 2017-07-12 19:02:21
 tags: [Lodash, Math]
 ---
+> 巧妙的函数实现吸引着你想去看看他的实现方法，里面会有更多奇思妙想让你欣喜若狂...
+
 # Math
 
 ## mean
@@ -23,7 +25,7 @@ const mean = array => {
     return sum / length;
 }
 ```
-
+<!-- more -->
 ## add
 ```javascript
 _.add(augend, addend)

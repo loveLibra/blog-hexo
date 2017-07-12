@@ -1,7 +1,9 @@
-title: Lodash源码祭(Number)
+title: Lodash源码祭「Number」
 date: 2017-07-12 19:02:12
 tags: [Lodash, Number]
 ---
+> 巧妙的函数实现吸引着你想去看看他的实现方法，里面会有更多奇思妙想让你欣喜若狂...
+
 # Number
 
 ## random
@@ -57,7 +59,7 @@ const random = (lower, upper, floating) => {
     return lower + Math.floor((Math.random() * (upper - lower + 1)));
 }
 ```
-
+<!-- more -->
 ## inRange
 ```javascript
 _.inRange(number, [start=0], end)
