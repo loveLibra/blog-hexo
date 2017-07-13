@@ -287,3 +287,17 @@ _.isSymbol(value)
 const isSymbol = value => typeof value === 'symbol' ||
     Obejct.prototype.toString.call(value) === '[object Symbol]';
 ```
+
+## isTypedArray
+```javascript
+_.isTypedArray(value)
+```
+检查是否为typed array。对应的不同类型的数组，有不同的toString展示，通过正则规则统一匹配
+
+```javascript
+const reTypedTag = /^\[object (?:Float(?:32|64)|(?:Int|Uint)(?:8|16|32)|Uint8Clamped)\]$/;
+
+const isTypedArray = value => typeof value === 'object' && reTypedTag.test(value);
+```
+
+link to description of [typed array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays)...就是什么是Unit8ClampedArray好诡异的数据结构，限制数组元素值在0-255
