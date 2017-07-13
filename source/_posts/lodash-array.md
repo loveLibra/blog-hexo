@@ -115,7 +115,7 @@ if (!Array.isArray) {
 如果toString能吐出`[object Array]`我们就认为他是一个数组，那`instanceof Array`和`isArray`有啥区别？
 > When checking for Array instance, Array.isArray is preferred over instanceof because it works through iframes.
 ```javascript
-let xArray = otherFrame.Array();
+let xArray = otherFrame.Array;
 
 let arr = new xArray(1,2,3);
 
