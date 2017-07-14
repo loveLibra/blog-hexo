@@ -301,3 +301,12 @@ const isTypedArray = value => typeof value === 'object' && reTypedTag.test(value
 ```
 
 link to description of [typed array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays)...就是什么是Unit8ClampedArray好诡异的数据结构，限制数组元素值在0-255
+
+## isUndefined
+```javascript
+_.isUndefined(value)
+```
+检查是否为undefined
+```javascript
+const isUndefined = value => value === undefined;
+```
