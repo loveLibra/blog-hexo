@@ -363,3 +363,29 @@ const toArray = value => {
 }
 ```
 源码对于这种`_.toArray({ 'a': 1, 'b': 2, length:2 });`情况的ArrayLike返回的是[undefined, undefined]...有点不合理了，但是似乎没办法区分这种这种带length的普通对象啊...
+
+## toLength
+```javascript
+_.toLength(value)
+```
+转化为一个length的合法值：整数字且0 <= value <= Number.MAX_SAFE_INTEGER
+```javascript
+const toLength = value => {
+    if (!value) {
+        return 0;
+    }
+
+    // 化整的神奇方法
+    let reminder = value % 1;
+
+    value = reminder ? value - reminder : value;
+
+    if (value < 0) {
+        return 0;
+    } else if (value > Number.MAX_SAFE_INTEGER) {
+        return Number.MAX_SAFE_INTEGER;
+    }
+
+	return value;
+}
+```
