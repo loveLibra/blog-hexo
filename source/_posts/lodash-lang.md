@@ -310,3 +310,56 @@ _.isUndefined(value)
 ```javascript
 const isUndefined = value => value === undefined;
 ```
+
+## toArray
+```javascript
+_.toArray(value)
+```
+转化value为数组
+```javascript
+const toArray = value => {
+    if (!value) {
+        return [];
+    }
+
+    if (isArrayLike(value)) {
+        if (typeof value === 'string') {
+            return [].slice.call(value)
+        } else {
+            // arguments
+            // DOM Nodes
+            let {length} = value;
+
+            let index = -1;
+
+            let res = [];
+
+            while (index++ < length) {
+                res[index] = value[index];
+            }
+
+            return res;
+        }
+    }
+
+    // map/set
+    let tag = Object.prototype.toString.call(value)
+    if (tag === '[object Set]' || tag === '[object Map]') {
+        return Array.from(value);
+    }
+
+    // NOTICE:还有迭代器对象
+    if (Symbol && Symbol.iterator && value[Symbol.iterator]) {
+        let res = [];
+        for (let val of value) {
+            res.push(val);
+        }
+
+        return res;
+    }
+
+    // 其他
+    return Object.values(value);  // 兼容性，懒得遍历了
+}
+```
+源码对于这种`_.toArray({ 'a': 1, 'b': 2, length:2 });`情况的ArrayLike返回的是[undefined, undefined]...有点不合理了，但是似乎没办法区分这种这种带length的普通对象啊...
