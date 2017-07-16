@@ -412,7 +412,7 @@ const toString = value => {
         return `${value.map(val => toString(val))}`;
     }
 
-    // 因为symbol类型的变量不可隐式转化为其他数据类型，symbol类型也要单独考虑
+    // 因为symbol类型的变量不可隐式转化为其他数据类型，symbol类型也要单独考虑（只可显示转化为字符串或symbol）
     if (typeof value === 'symbol') {
         if (Symbol && Symbol.prototype.toString) {
             return Symbol.prototype.toString.call(value);
