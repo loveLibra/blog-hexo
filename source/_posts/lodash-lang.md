@@ -389,3 +389,46 @@ const toLength = value => {
 	return value;
 }
 ```
+
+## toString
+```javascript
+_.toString(value)
+```
+转化为字符串，对于undefined和null返回空字符串，-0会保留`-`
+```javascript
+const INFINITY = 1 / 0;
+
+const toString = value => {
+    if (value == undefined) {
+        return '';
+    }
+
+    if (typeof value === 'string') {
+        return value;
+    }
+
+    // 对于数组，递归，并且会flattenDeep
+    if (Array.isArray(value)) {
+        return `${value.map(val => toString(val))}`;
+    }
+
+    // 因为symbol类型的变量不可隐式转化为其他数据类型，symbol类型也要单独考虑
+    if (typeof value === 'symbol') {
+        if (Symbol && Symbol.prototype.toString) {
+            return Symbol.prototype.toString.call(value);
+        } else {
+            return '';
+        }
+    }
+
+    //  其他类型强转
+    let res = `${value}`;
+
+    // 此处有-0的判断技巧
+    if (res === '0' && 1 / value === -INFINITY) {
+        return '-0';
+    } else {
+        return res;
+    }
+}
+```
