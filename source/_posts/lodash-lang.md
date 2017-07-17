@@ -432,3 +432,46 @@ const toString = value => {
     }
 }
 ```
+
+## toNumber
+```javascript
+_.toNumber(value)
+```
+转化为数字
+```javascript
+const toNumber = value => {
+    if (typeof value === 'number') {
+        return value;
+    }
+
+    // symbol can not covert to number
+    if (Object.prototype.toString.call(value) === '[object Symbol]') {
+        return NaN;
+    }
+
+    // valueof for object
+    if (isObject(value)) {
+        let val = typeof value.valueOf === 'function' ? value.valueOf() : value;
+
+        value = isObject(val) ? `${val}` : val; // what for?
+    }
+
+    // 字符串
+    if (typeof value === 'string') {
+        value = value.trim();
+
+        // 对于2进制(0b)、8进制(0o)、16进制(0x)的转化
+        // if (/^0b[01]+$/i.test(value) ||
+        //    /^0o[0-7]+$/i.test(value) ||
+        //    /^0x[0-9a-f]+$/i.test(value)) {
+        //        return +value;
+        // }
+
+        // 源码对于这个正则的判断是为了啥?
+        // /^[-+]0x[0-9a-f]+$/i，只用判断16进制么，2进制和8进制带符号的同样也转不过来的啊
+        return +value;
+    }
+
+    return +value; // 其他情况
+}
+```
