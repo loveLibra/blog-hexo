@@ -514,6 +514,25 @@ const toInteger = value => {
     let reminder = value % 1;
 
 
-    return result === result ? result - remind : 0;
+    return value === value ? value - reminder : 0;
+}
+```
+
+## toSafeInteger
+```javascript
+_.toSafeInteger(value)
+```
+转化为安全整数
+```javascript
+const toSafeInteger = value => {
+    value = toInteger(value);
+
+    if (value < Number.MIN_SAFE_INTEGER) {
+        return Number.MIN_SAFE_INTEGER;
+    } else if (value > Number.MAX_SAFE_INTEGER) {
+        return Number.MAX_SAFE_INTEGER;
+    }
+
+    return value;
 }
 ```
