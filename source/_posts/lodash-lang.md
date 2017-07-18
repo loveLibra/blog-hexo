@@ -475,3 +475,19 @@ const toNumber = value => {
     return +value; // 其他情况
 }
 ```
+
+## toInteger
+```javascript
+_.toInteger(value)
+```
+转化为整数
+```javascript
+const toInteger = value => {
+    value = toNumber(value);
+
+    let reminder = value % 1;
+
+
+    return result === result ? result - remind : 0;
+}
+```
