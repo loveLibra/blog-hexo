@@ -476,6 +476,32 @@ const toNumber = value => {
 }
 ```
 
+## toFinite
+```javascript
+_.toFinite(value)
+```
+转化为有限数字
+```javascript
+const INFINITY = 1 / 0;
+const MAX_INTEGER = 1.7976931348623157e+308;
+
+const toFinite = value => {
+    if (!value) {
+        return 0;
+    }
+
+    value = toNumber(value);
+
+    if (value === INFINITY || value === -INFINITY) {
+        let sign = value < 0 ? -1 : 1;
+
+        return sign * MAX_INTEGER;
+    }
+
+    return value === value ? value : 0; // NaN
+}
+```
+
 ## toInteger
 ```javascript
 _.toInteger(value)
@@ -483,7 +509,7 @@ _.toInteger(value)
 转化为整数
 ```javascript
 const toInteger = value => {
-    value = toNumber(value);
+    value = toFinite(value);
 
     let reminder = value % 1;
 
