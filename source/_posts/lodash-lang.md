@@ -536,3 +536,23 @@ const toSafeInteger = value => {
     return value;
 }
 ```
+
+## toPlainObject
+```javascript
+_.toPlainObject(value)
+```
+转化为plain object，就是for...in遍历后取到的所有键值对（包括原型链上的属性值）
+```javascript
+const toPlainObject = value => {
+    // convert to object
+    value = Object(value);
+
+    let res = {};
+
+    for (let key in value) {
+        res[key] = value[key];
+    }
+
+    return res;
+}
+```
