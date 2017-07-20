@@ -10,7 +10,7 @@ tags: [Lodash, String]
 ```javascript
 _.forIn(object, [iteratee=_.identity])
 ```
-遍历所有可枚举的属性和键，iteratee接受三个参数：value、key、object...跟数组的forEach一样，`return false`会退出遍历
+遍历所有可枚举的`字符串`(非symbol)键和对应的值，iteratee接受三个参数：value、key、object...跟数组的forEach一样，`return false`会退出遍历
 ```javascript
 const forIn = (object, iteratee) => {
     if (object == null) {
@@ -19,7 +19,7 @@ const forIn = (object, iteratee) => {
 
     object = Object(object);
 
-    let attrs = Object.getOwnPropertyNames(object); // 获取所有属性
+    let attrs = Object.keys(object); // 获取所有可枚举属性
 
     let index = -1;
 
