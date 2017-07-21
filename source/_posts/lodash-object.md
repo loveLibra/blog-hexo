@@ -19,7 +19,21 @@ const forIn = (object, iteratee) => {
 
     object = Object(object);
 
-    let attrs = Object.keys(object); // 获取所有可枚举属性
+    //let attrs = Object.keys(object); // 获取所有可枚举属性
+    let attrs = [];
+
+    // 通过原生for in获取所有可枚举的属性
+	for (let attr in object) {
+		attrs.push(attr);
+	}
+    // 或者通过如下方式获取，但是要保存object副本
+    //while (object) {
+    //    let attr = Object.keys(object);
+
+    //    attrs = [...attrs, ...attr];
+
+    //    object = Object.getPrototypeOf(object);
+    //}
 
     let index = -1;
 
