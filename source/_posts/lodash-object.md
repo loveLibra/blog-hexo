@@ -48,3 +48,32 @@ const forIn = (object, iteratee) => {
     return object;
 }
 ```
+
+## forOwn
+```javascript
+_.forOwn(object, [iteratee=_.identity])
+```
+类似于`forIn`，但是只遍历自己的可枚举属性，直接用`Object.keys`就可以啦
+```javascript
+const forOwn = (object, iteratee) => {
+    if (object == null) {
+        return object;
+    }
+
+    object = Object(object);
+
+    let attrs = Object.keys(object);
+
+    let index = -1;
+
+    while (++index < attrs.length) {
+        let attr = attrs[index];
+
+        if (iteratee(object[attr], attr, object) === false) {
+            break;
+        }
+    }
+
+    return object;
+}
+```
