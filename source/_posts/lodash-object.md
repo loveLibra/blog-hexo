@@ -77,3 +77,20 @@ const forOwn = (object, iteratee) => {
     return object;
 }
 ```
+
+## keys
+```javascript
+_.keys(object)
+```
+返回可枚举的键名。非对象变量会强制转化为对象
+```javascript
+const keys = object => {
+    if (object == null) {
+        return [];
+    }
+
+    object = Object(object);
+
+    return Object.keys(obejct);
+}
+```
