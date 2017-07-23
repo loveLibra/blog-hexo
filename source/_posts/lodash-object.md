@@ -94,3 +94,26 @@ const keys = object => {
     return Object.keys(obejct);
 }
 ```
+
+## keysIn
+```javascript
+_.keysIn(object)
+```
+类似`keys`，返回原型链上的所有属性
+```javascript
+const keysIn = object => {
+    if (object == null) {
+        return [];
+    }
+
+    object = Object(object);
+
+    let attrs = [];
+
+    for (let attr in object) {
+		attrs.push(attr);
+	}
+
+    return attrs;
+}
+```
