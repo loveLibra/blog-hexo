@@ -117,3 +117,33 @@ const keysIn = object => {
     return attrs;
 }
 ```
+
+## pick
+```javascript
+_.pick(object, [paths])
+```
+pick出obejct中对应path（字符串或数组）的键值对，返回pick到的新对象
+```javascript
+const pick = (object, paths) => {
+    if (object == null || paths === undefined) {
+        return {};
+    }
+
+    if (!Array.isArray(paths)) {
+        paths = [String(paths)];
+    }
+
+    let result = {};
+    for (let i = 0; i < paths.length; i++) {
+        let key = paths[i];
+
+        if (object[key] === undefined) {
+            continue;
+        }
+
+		result[key] = object[key];
+    }
+	
+	return result;
+}
+```
