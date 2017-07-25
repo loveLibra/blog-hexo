@@ -175,3 +175,31 @@ const has = (object, path) => {
     return true;
 }
 ```
+
+## hasIn
+```javascript
+_.hasIn(object, path)
+```
+跟`has`类似，但是可以查找原型链上的属性，可以直接用`in`操作符
+```javascript
+const hasIn = (object, path) => {
+    if (object == null || !path) {
+        return false;
+    }
+
+    path = Array.isArray(path) ? path : path.split('.');
+
+    let index = -1;
+    while (++index < path.length) {
+        let attr = path[index];
+
+        if (attr in object) {
+            object = object[attr];
+        } else {
+            return false;
+        }
+    }
+
+    return true;
+}
+```
