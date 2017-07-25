@@ -147,3 +147,31 @@ const pick = (object, paths) => {
 	return result;
 }
 ```
+
+## has
+```javascript
+_.has(object, path)
+```
+object**自身**是否包含path所提供的属性。path可以是字符串(单个属性或者以`.`分割的路径)，也可以是数组
+```javascript
+const has = (object, path) => {
+    if (object == null || !path) {
+        return false;
+    }
+
+    path = Array.isArray(path) ? path : path.split('.');
+
+    let index = -1;
+    while (++index < path.length) {
+        let attr = path[index];
+
+        if (object.hasOwnProperty(attr)) {
+            object = object[attr];
+        } else {
+            return false;
+        }
+    }
+
+    return true;
+}
+```
