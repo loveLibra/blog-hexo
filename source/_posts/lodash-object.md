@@ -229,3 +229,39 @@ const invert = object => {
     return res;
 }
 ```
+
+## invertBy
+```javascript
+_.invertBy(object, [iteratee=_.identity])
+```
+与`invert`类似，参数可有iteratee函数去迭代每个值...另外，对于重复键的该方法不会覆盖，键转化成值后是一个数组
+```javascript
+const invertBy = (object, iteratee) => {
+    if (!iteratee) {
+        iteratee = value => value;
+    }
+
+    if (object == null) {
+        return {};
+    }
+
+    object = Object(object);
+
+    let res = {};
+
+    for (let key in object) {
+        if (object.hasOwnProperty(key)) {
+
+            let _key = iteratee(object[key]);
+
+            if (res[_key]) {
+                res[_key].push(key);
+            } else {
+                res[_key] = [key];
+            }
+        }
+    }
+
+    return res;
+}
+```
