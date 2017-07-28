@@ -203,3 +203,29 @@ const hasIn = (object, path) => {
     return true;
 }
 ```
+
+## invert
+```javascript
+_.invert(object)
+```
+反转对象的键值对，反转后重复的键的值会被覆盖
+```javascript
+const invert = object => {
+    if (object == null) {
+        return {};
+    }
+
+    object = Object(object);
+
+    let res = {};
+
+    for (let key in object) {
+
+        if (object.hasOwnProperty(key)) {
+            res[object[key]] = key;
+        }
+    }
+
+    return res;
+}
+```
