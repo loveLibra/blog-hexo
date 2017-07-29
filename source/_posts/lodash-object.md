@@ -265,3 +265,33 @@ const invertBy = (object, iteratee) => {
     return res;
 }
 ```
+
+## mapKeys
+```javascript
+_.mapKeys(object, [iteratee=_.identity])
+```
+保留对象的值，通过iteratee重新映射键，iteratee接受3个参数（value, key, object），返回map后的新对象
+PS: 对于官网`_.mapKeys({a: 1, b:2})`输出{1:1, 2:2}持保留意见啊，这个方法直接用Object.keys去遍历也太随便了吧，怎么滴也应该原样返回啊，这块就按照自己的想法去实现啊
+```javascript
+const mapKeys = (object, iteratee) => {
+    if (object == null) {
+        return {};
+    }
+
+    object = Object(object);
+
+    if (!iteratee || typeof iteratee !== 'function') {
+        iteratee = (value, key) => key;
+    }
+
+    let res = {};
+    for (let key in object) {
+        if (object.hasOwnProperty(key)) {
+            res[iteratee(object[key], key, object)] = object[key];
+        }
+    }
+
+    return res;
+}
+```
+如果值是个引用（ 比如：{a: {b: 'hello world'}} ），怎么解决map后的对象和源对象的值是指向同一内存的事实啊...
