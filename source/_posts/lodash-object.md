@@ -295,3 +295,31 @@ const mapKeys = (object, iteratee) => {
 }
 ```
 如果值是个引用（ 比如：{a: {b: 'hello world'}} ），怎么解决map后的对象和源对象的值是指向同一内存的事实啊...
+
+## mapValues
+```javascript
+_.mapValues(object, [iteratee=_.identity])
+```
+同`mapKeys`，会映射值
+```javascript
+const mapValues = (object, iteratee) => {
+    if (object == null) {
+        return {};
+    }
+
+    object = Object(object);
+
+    if (!iteratee || typeof iteratee !== 'function') {
+        iteratee = (value, key) => value;
+    }
+
+    let res = {};
+    for (let key in object) {
+        if (object.hasOwnProperty(key)) {
+            res[key] = iteratee(object[key], key, object);
+        }
+    }
+
+    return res;
+}
+```
