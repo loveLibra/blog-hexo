@@ -6,6 +6,32 @@ tags: [Lodash, String]
 
 # Object
 
+## assign
+```javascript
+_.assign(object, [sources])
+```
+将source(可多个，参数列表)中可枚举的字符串属性赋到object，合并顺序是从左到右合并到object，同名会覆盖，方法返回object
+```javascript
+const assign = (object, ...sources) => {
+    if (object == null) {
+        object = {};
+    }
+
+    if (sources && sources.length > 0) {
+        sources.forEach(source => {
+            for (let key in source) {
+                if (source.hasOwnProperty(key)) {
+                    object[key] = source[key];
+                }
+            }
+        });
+    }
+    // Or: 直接Object.assign，行为一致
+
+    return object;
+}
+```
+
 ## forIn
 ```javascript
 _.forIn(object, [iteratee=_.identity])
