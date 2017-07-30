@@ -32,6 +32,12 @@ const assign = (object, ...sources) => {
 }
 ```
 
+## assignIn
+```javascript
+_.assignIn(object, [sources])
+```
+类似`assign`，但是也会将source中的继承熟悉合并过去，那就不要`hasOwnproperty`的判断咯？
+
 ## forIn
 ```javascript
 _.forIn(object, [iteratee=_.identity])
