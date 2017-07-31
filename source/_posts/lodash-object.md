@@ -180,6 +180,36 @@ const pick = (object, paths) => {
 }
 ```
 
+## omit
+```javascript
+_.omit(object, [paths])
+```
+pick的逆操作，排除某些paths(字符串或数组)指定的属性(自身属性和继承属性)
+```javascript
+const omit = (object, paths) => {
+    if (object == null) {
+        return {};
+    }
+
+    if (paths === undefined) {
+        return object;
+    }
+
+    if (!Array.isArray(paths)) {
+        paths = [String(paths)];
+    }
+
+    let result = {};
+    for(let attr in object) {
+        if (paths.indexOf(attr) < 0) {
+            result[attr] = object[attr];
+        }
+    }
+
+    return result;
+}
+```
+
 ## has
 ```javascript
 _.has(object, path)
