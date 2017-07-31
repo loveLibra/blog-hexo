@@ -210,6 +210,33 @@ const omit = (object, paths) => {
 }
 ```
 
+## omitBy
+```javascript
+_.omitBy(object, [predicate=_.identity])
+```
+排除**不**满足predicate的object的属性，predicate接受两个参数(value, key)
+```javascript
+const omitBy = (object, predicate) => {
+    if (object == null || predicate === undefined) {
+        return {};
+    }
+
+    if (typeof predicate !== 'function') {
+        return object;
+    }
+
+    let result = {};
+    for(let attr in object) {
+        if (predicate(object[attr], attr)) {
+            continue;
+        }
+        result[attr] = object[attr];
+    }
+
+    return result;
+}
+```
+
 ## has
 ```javascript
 _.has(object, path)
