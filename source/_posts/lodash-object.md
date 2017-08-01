@@ -180,6 +180,32 @@ const pick = (object, paths) => {
 }
 ```
 
+## pickBy
+```javascript
+_.pickBy(object, [predicate=_.identity])
+```
+pick除满足predicate为truthy值的属性。predicate接受两个参数（value、key）
+```javascript
+const pickBy = (object, predicate) => {
+    if (object == null) {
+        return {};
+    }
+
+    if (typeof predicate !== 'function') {
+        return object;
+    }
+
+    let result = {};
+    for(let attr in object) {
+        if (predicate(object[attr], attr)) {
+            result[attr] = object[attr];
+        }
+    }
+
+    return result;
+}
+```
+
 ## omit
 ```javascript
 _.omit(object, [paths])
