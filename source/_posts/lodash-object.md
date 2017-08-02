@@ -482,3 +482,48 @@ const get = (obejct, path, defaultValue) => {
     return value;
 }
 ```
+
+## set
+```javascript
+_.set(object, path, value)
+```
+设置指定路径的值，若中间路径不存在就新建，对于索引(数字)的情况，新建数组，其他情况新建对象
+```javascript
+const set = (object, path, value) => {
+    if (object == null || path === undefined) {
+        return object;
+    }
+
+    object = Object(object);
+
+    if (Array.isArray(path)) {
+        path = path.join('.');
+    }
+
+    path = String(path).replace(/\[([^\]]*)\]/g, '.$1').split('.');
+
+    let index = -1;
+    let nest = object;
+
+	let length = path.length;
+    while (++index < length) {
+        let cur = path[index];
+
+        let val = nest[cur];
+
+		if (index !== length - 1) {
+			if (val === undefined) {
+				val = /^(?:0|[1-9]\d*)$/.test(path[index + 1]) ? [] : {};
+			}
+		} else {
+			val = value;
+		}
+
+		nest[cur] = val;
+
+        nest = nest[cur];
+    }
+
+    return object;
+}
+```
