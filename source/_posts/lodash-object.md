@@ -438,3 +438,47 @@ const mapValues = (object, iteratee) => {
     return res;
 }
 ```
+
+## get
+```javascript
+_.get(object, path, [defaultValue])
+```
+获取object指定path的值，如果设置了defaultValue，在value为undefined时返回defaultValue
+```javascript
+const get = (obejct, path, defaultValue) => {
+    if (object == null || path === undefined) {
+        return;
+    }
+
+    object = Object(object);
+
+    if (Array.isArray(path)) {
+        path = path.join('.');
+    }
+
+    path = String(path).replace(/\[([^\]]*)\]/g, '.$1').split('.'); // 处理[0]这种情况的路径访问
+
+    let index = -1;
+    let value;
+    while (++index < path.length) {
+        let cur = path[index];
+
+        if (index === 0) {
+            value = object[cur];
+            continue;
+        }
+
+		value = value[cur];
+
+        if (value === undefined) {
+            break;
+        }
+    }
+
+    if (value === undefined) {
+        value = defaultValue;
+    }
+
+    return value;
+}
+```
