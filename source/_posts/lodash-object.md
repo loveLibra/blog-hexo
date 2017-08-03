@@ -553,3 +553,29 @@ const toPairs = object => {
     return res;
 }
 ```
+
+## toPairsIn
+```javascript
+_.toPairsIn(object)
+```
+类似`toPairs`，可遍历出继承的枚举属性
+```javascript
+const toPairsIn = object => {
+    if (object == null) {
+        return [];
+    }
+
+    const toString = Object.prototype.toString.call(object);
+
+    if (toString === '[object Set]' || toString === '[object Map]') {
+        return object.entries();
+    }
+
+    let res = [];
+    for (let key in object) {
+        res.push([key, object[key]]);
+    }
+
+    return res;
+}
+```
