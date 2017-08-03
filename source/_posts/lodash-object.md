@@ -527,3 +527,29 @@ const set = (object, path, value) => {
     return object;
 }
 ```
+
+## toPairs
+```javascript
+_.toPairs(object)
+```
+以对象自身可枚举的键和值组成的数组做为返回的数组的每项，如果是Map或者Set，直接返回entries
+```javascript
+const toPairs = object => {
+    if (object == null) {
+        return [];
+    }
+
+    const toString = Object.prototype.toString.call(object);
+
+    if (toString === '[object Set]' || toString === '[object Map]') {
+        return object.entries();
+    }
+
+    let res = [];
+    Object.keys(object).forEach(key => {
+        res.push([key, object[key]]);
+    });
+
+    return res;
+}
+```
