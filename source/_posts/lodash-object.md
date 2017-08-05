@@ -579,3 +579,29 @@ const toPairsIn = object => {
     return res;
 }
 ```
+
+## values
+```javascript
+_.values(object)
+```
+返回包含object自身可枚举属性值的数组
+```javascript
+const values = object => {
+    if (object == null) {
+        return [];
+    }
+
+    object = Object(object);
+
+    let index = -1;
+    let res = [];
+
+    let keys = Object.keys(object);
+
+    while (++index < keys.length) {
+        res[index] = object[keys[index]];
+    }
+
+    return res;
+}
+```
