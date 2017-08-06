@@ -605,3 +605,27 @@ const values = object => {
     return res;
 }
 ```
+
+## valuesIn
+```javascript
+_.valuesIn(object)
+```
+类似于`values`，可返回继承属性的值
+```javascript
+const valuesIn = object => {
+    if (object == null) {
+        return [];
+    }
+
+    object = Object(object);
+
+    let index = -1;
+    let res = [];
+
+    for (let index in object) {
+        res.push(object[index]);
+    }
+
+    return res;
+}
+```
