@@ -629,3 +629,46 @@ const valuesIn = object => {
     return res;
 }
 ```
+
+## unset
+```javascript
+_.unset(object, path)
+```
+删除置顶路径的属性，如果删除成功，则返回true，否则返回false
+```javascript
+const unset = (object, path) => {
+    if (object == null || path === undefined) {
+        return false;
+    }
+
+    object = Object(object);
+
+    if (Array.isArray(path)) {
+        path = path.join('.');
+    }
+
+    path = String(path).replace(/\[([^\]]*)\]/g, '.$1').split('.');
+
+    let index = -1;
+    let nest = object;
+
+	let length = path.length;
+    while (++index < length) {
+        let cur = path[index];
+
+        let val = nest[cur];
+
+        if (val === undefined) {
+            return false;
+        }
+
+		if (index === length - 1) {
+			delete nest[cur];
+		}
+
+        nest = nest[cur];
+    }
+
+    return true;
+}
+```
