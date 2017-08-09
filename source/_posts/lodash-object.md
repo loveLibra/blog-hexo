@@ -672,3 +672,23 @@ const unset = (object, path) => {
     return true;
 }
 ```
+
+## at
+```javascript
+_.at(object, [paths])
+```
+构建一个对应path数组中各path在object中的值的数组，主要还是path的解析，与上面get类似
+```javascript
+const at = (object, paths) => {
+    if (object == null || !Array.isArray(paths) || paths.length === 0) {
+        return [];
+    }
+
+    let res = [];
+    paths.forEach((path, index) => {
+        res[index] = get(object, path);
+    });
+
+    return res;
+}
+```
