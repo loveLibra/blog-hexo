@@ -692,3 +692,18 @@ const at = (object, paths) => {
     return res;
 }
 ```
+
+## create
+```javascript
+_.create(prototype, [properties])
+```
+Object.create功能，创建对象，prototype指定原型继承，若properties为空，则返回控对象
+```javascript
+const create = (prototype, properties) => {
+    // 保证prototype是对象
+    prototype = prototype === null ? null : Object(prototype);
+
+    return Object.create(prototype, properties);
+}
+```
+`Object.create`的详细解释&Polyfill的实现：[基本功传送门](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
