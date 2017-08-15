@@ -707,3 +707,27 @@ const create = (prototype, properties) => {
 }
 ```
 `Object.create`的详细解释&Polyfill的实现：[基本功传送门](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+
+## defaults
+```javascript
+_.defaults(object, [sources])
+```
+从左到右，将sources的自身和继承属性赋值道object中，如果某属性值非undefined，则忽略。此方法会改变object并返回。
+与assign类似，都是从左往右合并，区别在于`defaults`先出现的属性有限，不会被覆盖，assign后出现的属性会覆盖先出现的同名属性
+```javascript
+const defaults = (object, ...sources) => {
+    if (object == null) {
+        object = {};
+    }
+
+    sources.forEach(source => {
+        for (let key in source) {
+            if (object[key] === undefined) {
+                object[key] = source[key];
+            }
+        }
+    });
+
+    return object;
+}
+```
