@@ -731,3 +731,28 @@ const defaults = (object, ...sources) => {
     return object;
 }
 ```
+
+## findKey
+```javascript
+_.findKey(object, [predicate=_.identity])
+```
+返回满足predicate的第一个元素的键
+```javascript
+const findKey = (object, predicate) => {
+    if (object == null) {
+        return;
+    }
+
+    if (typeof predicate !== 'function') {
+        return Object.keys(object).slice(0, 1);
+    }
+
+    for (let key in object) {
+        if (predicate(object[key])) {
+            return key;
+        }
+    }
+
+    return;
+}
+```
