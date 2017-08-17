@@ -20,3 +20,28 @@ const attempt = (func, ...args) => {
     }
 }
 ```
+
+## bindAll
+```javascript
+_.bindAll(object, methodNames)
+```
+将object中的methodNames的执行上下文绑定在object上。methodNames可为字符串和字符串的数组。执行的返回结果为object
+```javascript
+const bindAll = (object, methods) => {
+    if (typeof methods === 'string') {
+        methods = [methods];
+    }
+
+    if (!Array.isArray(methods)) {
+        return object;
+    }
+
+    methods.forEach(method => {
+        let fn = obejct[method].bind(object);
+
+        object[method] = fn;
+    });
+
+    return object;
+}
+```
