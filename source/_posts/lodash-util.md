@@ -45,3 +45,41 @@ const bindAll = (object, methods) => {
     return object;
 }
 ```
+
+## flow
+```javascript
+_.flow([funcs])
+```
+组合函数的执行，前一个函数的返回值作为后一个函数的参数，返回值为组合的新函数，函数的列表的的执行上下文全部指向新生成的函数
+```javascript
+const flow = (funcs) => {
+    const length = funcs ? funcs.length : 0;
+
+    // 检查调用栈上是否全是函数
+    let index = length
+    while (index--) {
+        if (typeof funcs[index] !== 'function') {
+            throw new TypeError('Expected a function...');
+        }
+    }
+
+    return function(...args) {
+        let index = 0;
+
+        // 如果没有funcs，则返回参数列表的第一个参数
+        if (length === 0) {
+            return args[0];
+        }
+
+        let res = funcs[index].apply(this, args);
+
+        while (++index < length) {
+            res = funcs[index].call(this, res);
+        }
+
+        return res;
+    }
+
+    return fn;
+}
+```
