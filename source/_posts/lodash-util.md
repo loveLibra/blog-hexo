@@ -94,3 +94,12 @@ const identity = (...value) => {
     return value[0];
 }
 ```
+
+## noop
+```javascript
+_.noop()
+```
+返回undefined的函数
+```javascript
+const noop = _ => {};
+```
