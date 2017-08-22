@@ -83,3 +83,14 @@ const flow = (funcs) => {
     return fn;
 }
 ```
+
+## identity
+```javascript
+_.identity(value)
+```
+返回第一个参数是什么鬼...
+```javascript
+const identity = (...value) => {
+    return value[0];
+}
+```
