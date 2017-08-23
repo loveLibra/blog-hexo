@@ -103,3 +103,22 @@ _.noop()
 ```javascript
 const noop = _ => {};
 ```
+
+## nthArg
+```javascript
+_.nthArg([n=0])
+```
+生成一个返回第n个参数的函数...若n为负数，则从参数列表尾部开始算
+```javascript
+const nthArg = (n = 0) => {
+    return (...args) => {
+        let {length} = args;
+
+        if (!length) {
+            return;
+        }
+
+        return n < 0 ? args[length + n] : args[n];
+    }
+}
+```
