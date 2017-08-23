@@ -122,3 +122,26 @@ const nthArg = (n = 0) => {
     }
 }
 ```
+
+## over
+```javascript
+_.over([iteratees=[_.identity]])
+```
+生成一个函数，对函数的arguments，调用各iteratees，返回执行的结果
+```javascript
+const over = iteratees => {
+    if (!Array.isArray(iteratees)) {
+        iteratees = [iteratees];
+    }
+
+    return (...args) => {
+        let res = [];
+
+        iteratees.forEach((iteratee, index) => {
+            res[index] = typeof iteratee === 'function' ? iteratee.apply(null, args) : undefined;
+        });
+
+        return res;
+    }
+}
+```
