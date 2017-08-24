@@ -158,3 +158,52 @@ const property = path => {
     };
 }
 ```
+
+## range
+```javascript
+_.range([start=0], end, [step=1])
+```
+返回一个步长为step，从start到end(不包括end)区间内数字的数组;
+```javascript
+const range = (...args) => {
+    let start;
+    let end;
+    let step;
+
+    switch (args.length) {
+        case 1:
+            end = args[0];
+
+            start = 0;
+
+            step = end < start ? -1 : 1;
+            break;
+        case 2:
+            [start, end] = args;
+            step = 1;
+            break;
+        case 3:
+            [start, end, step] = args;
+            break;
+    }
+
+    if (start === end) {
+        return [];
+    }
+
+    if (step === 0) {
+        return new Array(end - start).fill(start);
+    }
+
+    let fill = start;
+    let res = [];
+
+	while (step < 0 ? fill > end : fill < end) {
+        res.push(fill);
+
+        fill += step;
+    };
+
+    return res;
+}
+```
