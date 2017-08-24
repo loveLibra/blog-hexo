@@ -145,3 +145,16 @@ const over = iteratees => {
     }
 }
 ```
+
+## property
+```javascript
+_.property(path)
+```
+生成一个返回object指定path的属性的值的函数...就是把object的get包装了下
+```javascript
+const property = path => {
+    return object => {
+        return get(object, path);
+    };
+}
+```
