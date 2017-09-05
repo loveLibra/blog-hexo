@@ -1,6 +1,6 @@
 title: destructuring
 date: 2016-09-25 11:48:01
-tags: Es6
+tags: ES6
 ---
 
 **destructuring**，解构，可以方便coder们从Object/Array中提取想要的数据，Es6大杀器...
