@@ -45,3 +45,24 @@ function test(target) {
 }
 ```
 说白了，类的修饰器就是个函数，类会被扔到decorator中进行2次处理
+
+## 属性修饰器
+不仅可以对类定义修饰器，也可以对类的属性或者方法定义
+```javascript
+class A {
+    @readonly name() {
+        return 'hello world';
+    }
+}
+
+/*
+ * @param target 目标属性／方法
+ * @param name 属性名
+ * @param descriptor 属性描述对象
+ */
+function readonly(target, name, descriptor) {
+    descriptor.writable = false;
+
+    return descriptor;
+}
+```
