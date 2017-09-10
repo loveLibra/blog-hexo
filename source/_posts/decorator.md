@@ -44,7 +44,8 @@ function test(target) {
   target.isTestable = true;
 }
 ```
-说白了，类的修饰器就是个函数，类会被扔到decorator中进行2次处理
+说白了，类的修饰器就是个函数，类会被扔到decorator中进行二次处理
+<!-- more -->
 
 ## 方法修饰器
 不仅可以对类定义修饰器，也可以对类的属性或者方法定义
