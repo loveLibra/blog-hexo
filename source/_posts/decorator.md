@@ -46,7 +46,7 @@ function test(target) {
 ```
 说白了，类的修饰器就是个函数，类会被扔到decorator中进行2次处理
 
-## 属性修饰器
+## 方法修饰器
 不仅可以对类定义修饰器，也可以对类的属性或者方法定义
 ```javascript
 class A {
@@ -64,5 +64,16 @@ function readonly(target, name, descriptor) {
     descriptor.writable = false;
 
     return descriptor;
+}
+```
+
+## 函数修饰器
+函数因hoist的因素，无法实现decorator的功能，可以使用高阶函数替代
+```javascript
+const decorator = (target) => {
+    return function() {
+        // do something else
+        target.apply(this, arguments);
+    }
 }
 ```
